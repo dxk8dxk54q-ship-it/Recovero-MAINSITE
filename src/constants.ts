@@ -24,7 +24,7 @@ export const NAV_LINKS = [
 export const SERVICES = [
   {
     title: 'Vehicle Transport',
-    image: 'https://images.unsplash.com/photo-1600706432502-77a0e2e3277e?q=80&w=800&auto=format&fit=crop',
+    image: 'https://github.com/dxk8dxk54q-ship-it/Recovero/blob/main/images/Transport-recovery.jpg.jpg?raw=true',
     description: 'Rapid-response vehicles for safe transport of luxury, classic, and everyday cars.',
     href: '/vehicle-transport'
   },

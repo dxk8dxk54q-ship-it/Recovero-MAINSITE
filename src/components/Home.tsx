@@ -212,7 +212,7 @@ export default function Home() {
       {/* FAQ Section */}
       <section id="faqs" className="py-12 md:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-10 md:gap-16 items-start">
+          <div className="grid lg:grid-cols-1 gap-10 md:gap-16 items-start max-w-3xl mx-auto">
             <div>
               <h2 className="text-2xl sm:text-3xl md:text-5xl font-black mb-6 md:mb-12">
                 Got <span className="text-brand-orange">Questions?</span>
@@ -261,21 +261,6 @@ export default function Home() {
                 </a>
               </div>
             </div>
-
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              className="relative aspect-video lg:aspect-auto lg:h-full min-h-[200px] md:min-h-[400px]"
-            >
-              <img
-                src="https://images.unsplash.com/photo-1600706432502-77a0e2e3277e?q=80&w=1200&auto=format&fit=crop"
-                alt="Car on Transport Truck"
-                className="w-full h-full object-cover rounded-sm grayscale hover:grayscale-0 transition-all duration-700"
-                referrerPolicy="no-referrer"
-              />
-              <div className="absolute inset-0 border border-brand-orange/50 m-2 md:m-4 pointer-events-none"></div>
-            </motion.div>
           </div>
         </div>
       </section>
