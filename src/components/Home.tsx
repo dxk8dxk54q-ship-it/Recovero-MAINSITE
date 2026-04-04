@@ -44,20 +44,16 @@ export default function Home() {
             className="max-w-4xl text-center md:text-left"
           >
             <h1 className="text-3xl sm:text-4xl md:text-6xl font-black leading-[1.1] mb-6 md:mb-8 uppercase tracking-tighter text-brand-dark">
-              STRANDED? FAST VEHICLE RECOVERY IN PORTSMOUTH & HAMPSHIRE. WE'RE ON OUR WAY.
+              Reliable Vehicle <span className="text-brand-orange">Recovery and</span><br />
+              <span className="text-brand-orange">Transport</span> In Portsmouth & Hampshire
             </h1>
-            <p className="text-base md:text-lg text-brand-dark mb-6 max-w-xl mx-auto md:mx-0 leading-relaxed font-semibold">
-              Fast help for breakdowns, non-runners, and roadside emergencies. 24/7 support with rapid dispatch across Portsmouth and nearby areas.
+            <p className="text-lg md:text-xl text-brand-dark mb-8 max-w-2xl mx-auto md:mx-0 leading-relaxed font-bold">
+              Recovero provides fast and reliable 24/7 vehicle recovery and transport across Hampshire, including Portsmouth, Havant, Southampton, Winchester, Fareham, Gosport, and Chichester.
             </p>
-            <ul className="text-sm md:text-base text-brand-dark mb-8 md:mb-12 max-w-xl mx-auto md:mx-0 space-y-2 list-disc list-inside text-left font-medium">
-              <li>Rapid-response vehicles available across Portsmouth and nearby areas.</li>
-              <li>We reach you faster by dispatching the nearest specialist in our network.</li>
-              <li>Call now for an immediate ETA and a fixed price quote.</li>
-            </ul>
             <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start space-y-3 sm:space-y-0 sm:space-x-4 mb-8">
               <a href="tel:07366302341" className="w-full sm:w-auto bg-brand-orange hover:bg-brand-orange/90 text-black font-black py-4 md:py-5 px-8 md:px-10 text-base md:text-lg uppercase tracking-widest transition-all transform hover:scale-105 flex items-center justify-center group rounded-full">
                 <Phone className="mr-2 w-5 h-5 fill-current" />
-                Call for Fast Dispatch
+                GET IN TOUCH
               </a>
             </div>
             <div className="flex flex-wrap justify-center items-center gap-4 md:gap-8 mt-6 text-xs md:text-sm font-bold text-brand-dark uppercase tracking-widest">
@@ -193,6 +189,29 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Priority Dispatch Section */}
+      <section className="py-16 px-4 bg-white border-t border-gray-100">
+        <div className="max-w-4xl mx-auto">
+          <div className="bg-orange-50 border-2 border-orange-500/20 p-8 md:p-12 rounded-3xl shadow-sm relative overflow-hidden">
+            {/* Subtle background accent */}
+            <div className="absolute -right-8 -top-8 w-32 h-32 bg-orange-500/10 rounded-full" />
+            
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-gray-900 mb-6 text-center">
+              WE GET TO YOU <span className="text-orange-500">FAST!</span>
+            </h2>
+            
+            <p className="text-lg md:text-xl text-gray-700 leading-relaxed font-semibold text-center max-w-3xl mx-auto">
+              We operate a vetted local dispatch system rather than relying on just one or two trucks. This means we instantly coordinate with the closest available specialist to your exact location, slashing wait times and getting a recovery vehicle moving the moment you hang up the phone.
+            </p>
+            
+            <div className="mt-8 flex justify-center items-center gap-3">
+              <div className="h-2 w-2 bg-orange-500 rounded-full animate-ping" />
+              <span className="text-sm font-black uppercase tracking-widest text-orange-600">Priority Dispatch Active</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* FAQ Section */}
       <section id="faqs" className="py-12 md:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -241,7 +260,7 @@ export default function Home() {
                 <p className="text-brand-dark font-bold mb-4">Still unsure? Just give us a quick call. We'll give you a price and ETA in seconds.</p>
                 <a href="tel:07366302341" className="inline-flex items-center bg-brand-orange hover:bg-brand-orange/90 text-black font-black py-4 px-8 uppercase tracking-widest transition-all text-sm md:text-base rounded-full">
                   <Phone className="mr-2 w-5 h-5" />
-                  Call 07366 302341
+                  GET IN TOUCH
                 </a>
               </div>
             </div>
@@ -252,12 +271,6 @@ export default function Home() {
       {/* CTA Section */}
       <section className="relative py-16 md:py-32 bg-brand-orange text-black overflow-hidden">
         <div className="absolute inset-0 z-0 opacity-10">
-          <img
-            src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?q=80&w=1920&auto=format&fit=crop"
-            alt="Background"
-            className="w-full h-full object-cover grayscale"
-            referrerPolicy="no-referrer"
-          />
         </div>
         
         <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
@@ -268,7 +281,7 @@ export default function Home() {
             Call our dispatch center now for an immediate ETA and a free, no-obligation quote.
           </p>
           <a href="tel:07366302341" className="w-full sm:w-auto bg-black hover:bg-black/90 text-brand-orange font-black py-4 md:py-5 px-10 md:px-12 text-base md:text-lg uppercase tracking-widest transition-all transform hover:scale-110 rounded-full shadow-2xl inline-block">
-            Call for Fast Dispatch
+            GET IN TOUCH
           </a>
           <div className="flex flex-wrap items-center justify-center gap-4 mt-8 text-[10px] md:text-xs font-bold uppercase tracking-widest text-black/60">
             <div className="flex items-center">
