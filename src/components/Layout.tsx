@@ -26,7 +26,7 @@ export default function Layout({ children }: LayoutProps) {
   return (
     <div className="min-h-screen bg-white text-brand-dark font-brand selection:bg-brand-orange selection:text-white">
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-black/10 px-5">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md px-5">
         <div className="max-w-7xl mx-auto">
           <div className="flex justify-between items-center h-16 md:h-20">
             {/* Logo */}
@@ -34,11 +34,11 @@ export default function Layout({ children }: LayoutProps) {
               <img 
                 src="https://github.com/dxk8dxk54q-ship-it/Recovero/blob/main/images/recovero-logo.png?raw=true" 
                 alt="RECOVERO Logo" 
-                className="h-8 md:h-10 w-auto object-contain flex-shrink-0"
+                className="h-8 md:h-10 w-auto object-contain flex-shrink-0 rounded-full"
                 referrerPolicy="no-referrer"
               />
               <span className="text-lg lg:text-xl font-black tracking-tighter text-brand-dark whitespace-nowrap">
-                Recovero <span className="hidden xl:inline text-[10px] font-bold normal-case tracking-normal text-gray-500 ml-1">(The Vehicle Recovery Network)</span>
+                RECOVERO<span className="text-brand-orange">24/7</span>
               </span>
             </Link>
 
@@ -179,11 +179,11 @@ export default function Layout({ children }: LayoutProps) {
                 <img 
                   src="https://github.com/dxk8dxk54q-ship-it/Recovero/blob/main/images/recovero-logo.png?raw=true" 
                   alt="RECOVERO Logo" 
-                  className="h-8 md:h-10 w-auto object-contain"
+                  className="h-8 md:h-10 w-auto object-contain rounded-full"
                   referrerPolicy="no-referrer"
                 />
                 <span className="text-xl md:text-2xl font-black tracking-tighter text-brand-dark">
-                  Recovero <span className="text-[10px] md:text-xs font-bold normal-case tracking-normal text-gray-500 block md:inline md:ml-2">(The Vehicle Recovery Network)</span>
+                  RECOVERO<span className="text-brand-orange">24/7</span>
                 </span>
               </div>
               <p className="text-gray-600 mb-6 md:mb-8 leading-relaxed text-sm md:text-base">
@@ -218,7 +218,6 @@ export default function Layout({ children }: LayoutProps) {
             <div className="text-center md:text-left">
               <h4 className="text-sm md:text-lg font-black uppercase tracking-widest mb-4 md:mb-8 text-brand-orange">Useful Links</h4>
               <ul className="space-y-2 md:space-y-4 text-brand-dark text-sm md:text-base font-medium">
-                <li><a href="#" className="hover:text-brand-orange transition-colors">Terms & Conditions</a></li>
                 <li><a href="#" className="hover:text-brand-orange transition-colors">Privacy Policy</a></li>
                 <li><a href="#" className="hover:text-brand-orange transition-colors">Cookie Policy</a></li>
                 <li><a href="#" className="hover:text-brand-orange transition-colors">Emergency Contact</a></li>

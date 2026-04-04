@@ -3,8 +3,7 @@ export const NAV_LINKS = [
   { name: 'Breakdown', href: '/breakdown-recovery' },
   { name: 'Accident', href: '/accident-recovery' },
   { name: 'Transport', href: '/vehicle-transport' },
-  { 
-    name: 'Areas We Cover', 
+  { name: 'Areas We Cover', 
     href: '/#locations',
     subLinks: [
       { name: 'Portsmouth', href: '/portsmouth-recovery' },
@@ -18,7 +17,6 @@ export const NAV_LINKS = [
       { name: 'Hayling Island', href: '/hayling-island-recovery' },
     ]
   },
-  { name: 'Terms', href: '/#terms' },
 ];
 
 export const SERVICES = [
