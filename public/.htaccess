@@ -1,6 +1,10 @@
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
+  
+  # EXCLUDE SITEMAP AND ROBOTS FROM REDIRECTS
+  RewriteRule ^(sitemap\.xml|robots\.txt) - [L]
+
   RewriteRule ^index\.html$ - [L]
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
