@@ -19,6 +19,7 @@ import PetersfieldRecovery from './components/PetersfieldRecovery';
 import WinchesterRecovery from './components/WinchesterRecovery';
 import AndoverRecovery from './components/AndoverRecovery';
 import HaylingIslandRecovery from './components/HaylingIslandRecovery';
+import ScrollToTop from './components/ScrollToTop';
 
 function ScrollToHash() {
   const { hash, pathname } = useLocation();
@@ -42,6 +43,7 @@ function ScrollToHash() {
 export default function App() {
   return (
     <Router>
+      <ScrollToTop />
       <ScrollToHash />
       <Layout>
         <Routes>
