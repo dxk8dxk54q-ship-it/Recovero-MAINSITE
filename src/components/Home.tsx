@@ -43,14 +43,11 @@ export default function Home() {
             transition={{ duration: 0.8 }}
             className="max-w-4xl text-center md:text-left"
           >
-            <h1 className="text-4xl sm:text-5xl md:text-7xl font-black leading-[1.1] mb-6 md:mb-8 uppercase tracking-tighter text-brand-dark">
-              Fast, Reliable<br />
-              Vehicle Recovery<br />
-              <span className="text-brand-orange">& Breakdown</span><br />
-              Assistance
+            <h1 className="text-3xl sm:text-4xl md:text-6xl font-black leading-[1.1] mb-6 md:mb-8 uppercase tracking-tighter text-brand-dark">
+              STRANDED? FAST VEHICLE RECOVERY IN PORTSMOUTH & HAMPSHIRE. WE'RE ON OUR WAY.
             </h1>
             <p className="text-base md:text-lg text-brand-dark mb-6 max-w-xl mx-auto md:mx-0 leading-relaxed font-semibold">
-              Stranded? Our network of vetted recovery specialists is ready to get you moving again.
+              Fast help for breakdowns, non-runners, and roadside emergencies. 24/7 support with rapid dispatch across Portsmouth and nearby areas.
             </p>
             <ul className="text-sm md:text-base text-brand-dark mb-8 md:mb-12 max-w-xl mx-auto md:mx-0 space-y-2 list-disc list-inside text-left font-medium">
               <li>Rapid-response vehicles available across Portsmouth and nearby areas.</li>
@@ -63,34 +60,21 @@ export default function Home() {
                 Call for Fast Dispatch
               </a>
             </div>
-            <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 mt-4 text-[10px] md:text-xs font-bold uppercase tracking-widest text-brand-dark/60">
-              <div className="flex items-center">
-                <CheckCircle2 className="w-3 h-3 md:w-4 md:h-4 mr-1.5 text-brand-orange" />
-                Approved Network Partner
+            <div className="flex flex-wrap justify-center items-center gap-4 md:gap-8 mt-6 text-xs md:text-sm font-bold text-brand-dark uppercase tracking-widest">
+              <div className="flex items-center gap-1.5">
+                <CheckCircle2 className="w-4 h-4 text-green-500" />
+                <span>Vetted Operators</span>
               </div>
-              <div className="flex items-center">
-                <Clock className="w-3 h-3 md:w-4 md:h-4 mr-1.5 text-brand-orange" />
-                24/7 Service
+              <div className="flex items-center gap-1.5">
+                <CheckCircle2 className="w-4 h-4 text-green-500" />
+                <span>Fast Dispatch</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <CheckCircle2 className="w-4 h-4 text-green-500" />
+                <span>Fixed Upfront Price</span>
               </div>
             </div>
-
           </motion.div>
-
-          {/* Centered Badges */}
-          <div className="flex flex-wrap items-center justify-center gap-3 md:gap-6 mt-12 md:mt-20">
-            {[
-              '24/7',
-              'UPFRONT QUOTE',
-              'NO MEMBERSHIP'
-            ].map((badge) => (
-              <div 
-                key={badge} 
-                className="bg-white text-black px-4 md:px-6 py-2 rounded-full font-black text-[10px] md:text-sm uppercase tracking-widest border border-gray-200 shadow-sm animate-pulse-slow whitespace-nowrap"
-              >
-                {badge}
-              </div>
-            ))}
-          </div>
         </div>
 
         {/* Location Banner / Ticker */}
