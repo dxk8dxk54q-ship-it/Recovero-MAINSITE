@@ -21,10 +21,244 @@ interface LayoutProps {
 export default function Layout({ children }: LayoutProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [isTermsOpen, setIsTermsOpen] = useState(false);
+  const [isPrivacyOpen, setIsPrivacyOpen] = useState(false);
+  const [isCookiesOpen, setIsCookiesOpen] = useState(false);
   const location = useLocation();
 
   return (
     <div className="min-h-screen bg-white text-brand-dark font-brand selection:bg-brand-orange selection:text-white">
+      {/* Terms Modal */}
+      <AnimatePresence>
+        {isTermsOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] bg-black/80 flex items-center justify-center p-4"
+            onClick={() => setIsTermsOpen(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.95 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.95 }}
+              className="bg-brand-dark text-white p-8 rounded-sm max-w-2xl w-full max-h-[80vh] overflow-y-auto"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <h2 className="text-2xl font-black mb-1 uppercase tracking-tight text-white">LEGAL INFORMATION</h2>
+              <h3 className="text-xl font-black mb-6 uppercase tracking-tight text-orange-500">TERMS & CONDITIONS</h3>
+              <div className="text-gray-300 space-y-6 text-sm leading-relaxed">
+                <p>Please read these terms carefully before using our vehicle recovery and transport services.</p>
+                
+                <div>
+                  <h4 className="font-bold text-orange-500 mb-1">SERVICE AGREEMENT</h4>
+                  <p>These terms explain how Recovero operates as an introducer and dispatch service, and how jobs are carried out by independent operators. By contacting Recovero for assistance, you agree to these terms.</p>
+                </div>
+
+                <div>
+                  <h4 className="font-bold text-orange-500 mb-1">WHO WE ARE</h4>
+                  <p>Recovero is an introducer/dispatch service. We take your request and connect you with an available independent recovery or transport operator. You can contact us by phone or WhatsApp on 07366 302341.</p>
+                </div>
+
+                <div>
+                  <h4 className="font-bold text-orange-500 mb-1">WHAT WE DO / WHAT WE DON'T DO</h4>
+                  <p>Recovero introduces customers to independent operators. We are not the attending recovery operator and we do not carry out the physical recovery or transport service ourselves. When an operator accepts a job, the service is provided by that operator directly to you.</p>
+                </div>
+
+                <div>
+                  <h4 className="font-bold text-orange-500 mb-1">QUOTES & PRICING</h4>
+                  <p>Website prices and phone estimates are guide prices only unless confirmed by the attending operator. The operator sets and confirms the final price based on factors such as distance, vehicle type, vehicle condition, access, timing, and job complexity. Where possible, the operator confirms pricing before dispatch. In some situations, final pricing may only be confirmed once full details are known.</p>
+                </div>
+
+                <div>
+                  <h4 className="font-bold text-orange-500 mb-1">PAYMENT</h4>
+                  <p>To secure the dispatch of an independent operator, Recovero takes a secure booking deposit via a payment link. The remaining balance for the recovery or transport job is then arranged and paid directly to the attending independent operator upon their arrival.</p>
+                </div>
+
+                <div>
+                  <h4 className="font-bold text-orange-500 mb-1">AVAILABILITY & ETAS</h4>
+                  <p>Operator availability varies by area and demand. Estimated arrival times are not guaranteed and may change due to traffic, weather, road incidents, access restrictions, or changing operator availability.</p>
+                </div>
+
+                <div>
+                  <h4 className="font-bold text-orange-500 mb-1">CANCELLATIONS / ABORTIVE CALL-OUTS</h4>
+                  <p>If you need to cancel, tell us as soon as possible. If an operator has already dispatched or arrived, the operator may apply an abortive call-out or attendance charge for time and travel. If a booking is cancelled after the deposit has been paid and the driver dispatched, the deposit may be non-refundable.</p>
+                </div>
+
+                <div>
+                  <h4 className="font-bold text-orange-500 mb-1">LIABILITY LIMITS</h4>
+                  <p>The attending operator is responsible for the service they provide, including attendance, recovery method, transport, and on-site conduct. Recovero is not liable for acts, omissions, delays, loss, or damage arising from the operator's service. If there is a service issue, please raise it with the operator first. Recovero can assist with escalation and communication where needed.</p>
+                </div>
+
+                <div>
+                  <h4 className="font-bold text-orange-500 mb-1">COMPLAINTS HANDLING</h4>
+                  <p>For complaints, contact Recovero by phone or WhatsApp with your name, vehicle registration, date/time of job, and a summary of the issue. We will review the details and help route the complaint to the attending operator, then support follow-up where possible.</p>
+                </div>
+
+                <div>
+                  <h4 className="font-bold text-orange-500 mb-1">CHANGES TO THESE TERMS AND GOVERNING LAW</h4>
+                  <p>We may update these terms from time to time by publishing a revised version on this page. These terms are governed by the laws of England & Wales.</p>
+                </div>
+
+                <p className="text-xs text-gray-500 italic">Last updated: March 27, 2026</p>
+              </div>
+              <button
+                onClick={() => setIsTermsOpen(false)}
+                className="mt-8 bg-brand-orange text-black font-black py-2 px-6 uppercase tracking-widest hover:bg-brand-orange/90"
+              >
+                Close
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Privacy Modal */}
+      <AnimatePresence>
+        {isPrivacyOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] bg-black/80 flex items-center justify-center p-4"
+            onClick={() => setIsPrivacyOpen(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.95 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.95 }}
+              className="bg-brand-dark text-white p-8 rounded-sm max-w-2xl w-full max-h-[80vh] overflow-y-auto"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <h2 className="text-2xl font-black mb-1 uppercase tracking-tight text-white">LEGAL INFORMATION</h2>
+              <h3 className="text-xl font-black mb-6 uppercase tracking-tight text-orange-500">PRIVACY POLICY</h3>
+              <div className="text-gray-300 space-y-6 text-sm leading-relaxed">
+                <p>How we collect, use, and protect your personal data.</p>
+                
+                <div>
+                  <h4 className="font-bold text-orange-500 mb-1">INTRODUCTION</h4>
+                  <p>Recovero 24/7 is committed to protecting your privacy. This policy explains how we collect and process your personal information when you use our website, contact our dispatch team, or use our vehicle recovery introduction services.</p>
+                </div>
+
+                <div>
+                  <h4 className="font-bold text-orange-500 mb-1">DATA WE COLLECT</h4>
+                  <p>To provide our rapid dispatch service, we collect the following information:</p>
+                  <ul className="list-disc pl-5 space-y-1">
+                    <li>Contact Details: Your phone number (including WhatsApp) and name.</li>
+                    <li>Vehicle Details: Your vehicle registration, make, model, and the nature of the breakdown or accident.</li>
+                    <li>Location Data: Your exact GPS coordinates (if you use our 'Share Exact Location' feature) or your provided address so we can dispatch an operator to you.</li>
+                    <li>Payment Records: Transaction references from secure payment links used for booking deposits.</li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h4 className="font-bold text-orange-500 mb-1">HOW WE USE YOUR DATA</h4>
+                  <p>We use your information strictly to facilitate your vehicle recovery. This includes:</p>
+                  <ul className="list-disc pl-5 space-y-1">
+                    <li>Connecting you with an available independent recovery operator.</li>
+                    <li>Sending your location and vehicle details to the attending operator.</li>
+                    <li>Communicating with you via phone or WhatsApp regarding ETAs and service updates.</li>
+                    <li>Processing your booking deposit.</li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h4 className="font-bold text-orange-500 mb-1">SHARING YOUR INFORMATION</h4>
+                  <p>We are an introducer service. To get you help, we MUST share your name, vehicle details, phone number, and location with the independent recovery operator assigned to your job. We do not sell your personal data to any third parties for marketing purposes.</p>
+                </div>
+
+                <div>
+                  <h4 className="font-bold text-orange-500 mb-1">PAYMENT SECURITY</h4>
+                  <p>We use secure, third-party payment links to collect booking deposits. Recovero 24/7 does not view, store, or process your actual credit or debit card details on our systems.</p>
+                </div>
+
+                <div>
+                  <h4 className="font-bold text-orange-500 mb-1">DATA RETENTION</h4>
+                  <p>We retain your personal data only for as long as necessary to fulfill the service, resolve any disputes, handle complaints, and satisfy legal or accounting requirements.</p>
+                </div>
+
+                <div>
+                  <h4 className="font-bold text-orange-500 mb-1">YOUR RIGHTS (UK GDPR)</h4>
+                  <p>Under UK data protection law, you have the right to request access to the personal data we hold about you, ask for corrections, or request deletion of your data. To exercise these rights, please contact our dispatch team at 07366 302341.</p>
+                </div>
+
+                <p className="text-xs text-gray-500 italic">Last updated: April 4, 2026</p>
+              </div>
+              <button
+                onClick={() => setIsPrivacyOpen(false)}
+                className="mt-8 bg-brand-orange text-black font-black py-2 px-6 uppercase tracking-widest hover:bg-brand-orange/90"
+              >
+                Close
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Cookie Modal */}
+      <AnimatePresence>
+        {isCookiesOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] bg-black/80 flex items-center justify-center p-4"
+            onClick={() => setIsCookiesOpen(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.95 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.95 }}
+              className="bg-brand-dark text-white p-8 rounded-sm max-w-2xl w-full max-h-[80vh] overflow-y-auto"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <h2 className="text-2xl font-black mb-1 uppercase tracking-tight text-white">LEGAL INFORMATION</h2>
+              <h3 className="text-xl font-black mb-6 uppercase tracking-tight text-orange-500">COOKIE POLICY</h3>
+              <div className="text-gray-300 space-y-6 text-sm leading-relaxed">
+                <p>How we use cookies to improve your experience.</p>
+                
+                <div>
+                  <h4 className="font-bold text-orange-500 mb-1">WHAT ARE COOKIES?</h4>
+                  <p>Cookies are small text files placed on your device (computer, smartphone, or tablet) when you visit a website. They are widely used to make websites work more efficiently and to provide information to the owners of the site.</p>
+                </div>
+
+                <div>
+                  <h4 className="font-bold text-orange-500 mb-1">HOW WE USE COOKIES</h4>
+                  <p>Recovero 24/7 uses cookies for the following purposes:</p>
+                  <ul className="list-disc pl-5 space-y-1">
+                    <li>Essential Cookies: These are strictly necessary to provide you with services available through our website and to use some of its features, such as secure routing and basic site functionality.</li>
+                    <li>Performance & Analytics: We may use tracking pixels and analytics tools (such as Google Analytics) to understand how visitors interact with our site, which pages are visited most, and to measure the effectiveness of our advertising campaigns.</li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h4 className="font-bold text-orange-500 mb-1">THIRD-PARTY COOKIES</h4>
+                  <p>In addition to our own cookies, we may also use various third-party cookies to report usage statistics of the service and deliver advertisements. For example, our secure payment gateway providers and website hosting platforms may set their own essential cookies to ensure transactions and site stability.</p>
+                </div>
+
+                <div>
+                  <h4 className="font-bold text-orange-500 mb-1">MANAGING YOUR COOKIES</h4>
+                  <p>You have the right to decide whether to accept or reject cookies. You can set or amend your web browser controls to accept or refuse cookies. If you choose to reject cookies, you may still use our website, though your access to some functionality and areas of our website may be restricted. To learn more about how to manage cookies, visit the help section of your specific web browser.</p>
+                </div>
+
+                <div>
+                  <h4 className="font-bold text-orange-500 mb-1">CONTACT US</h4>
+                  <p>If you have any questions about our use of cookies or other technologies, please contact our dispatch team at 07366302341.</p>
+                </div>
+
+                <p className="text-xs text-gray-500 italic">Last updated: April 4, 2026</p>
+              </div>
+              <button
+                onClick={() => setIsCookiesOpen(false)}
+                className="mt-8 bg-brand-orange text-black font-black py-2 px-6 uppercase tracking-widest hover:bg-brand-orange/90"
+              >
+                Close
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md px-5">
         <div className="max-w-7xl mx-auto">
@@ -218,8 +452,9 @@ export default function Layout({ children }: LayoutProps) {
             <div className="text-center md:text-left">
               <h4 className="text-sm md:text-lg font-black uppercase tracking-widest mb-4 md:mb-8 text-brand-orange">Useful Links</h4>
               <ul className="space-y-2 md:space-y-4 text-brand-dark text-sm md:text-base font-medium">
-                <li><a href="#" className="hover:text-brand-orange transition-colors">Privacy Policy</a></li>
-                <li><a href="#" className="hover:text-brand-orange transition-colors">Cookie Policy</a></li>
+                <li><button onClick={() => setIsTermsOpen(true)} className="hover:text-brand-orange transition-colors">Terms & Conditions</button></li>
+                <li><button onClick={() => setIsPrivacyOpen(true)} className="hover:text-brand-orange transition-colors">Privacy Policy</button></li>
+                <li><button onClick={() => setIsCookiesOpen(true)} className="hover:text-brand-orange transition-colors">Cookie Policy</button></li>
                 <li><a href="#" className="hover:text-brand-orange transition-colors">Emergency Contact</a></li>
               </ul>
             </div>
