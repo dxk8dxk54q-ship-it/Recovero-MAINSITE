@@ -52,47 +52,47 @@ export default function Layout({ children }: LayoutProps) {
                 
                 <div>
                   <h4 className="font-bold text-orange-500 mb-1">SERVICE AGREEMENT</h4>
-                  <p>These terms explain how Recovero operates as an introducer and dispatch service, and how jobs are carried out by independent operators. By contacting Recovero for assistance, you agree to these terms.</p>
+                  <p>These terms explain how Recovero operates as a vehicle recovery service, and how jobs are carried out. By contacting Recovero for assistance, you agree to these terms.</p>
                 </div>
 
                 <div>
                   <h4 className="font-bold text-orange-500 mb-1">WHO WE ARE</h4>
-                  <p>Recovero is an introducer/dispatch service. We take your request and connect you with an available independent recovery or transport operator. You can contact us by phone or WhatsApp on 07366 302341.</p>
+                  <p>Recovero is a vehicle recovery service. We take your request and arrange for a recovery or transport operator to help you. You can contact us by phone or WhatsApp on 07366 302341.</p>
                 </div>
 
                 <div>
                   <h4 className="font-bold text-orange-500 mb-1">WHAT WE DO / WHAT WE DON'T DO</h4>
-                  <p>Recovero introduces customers to independent operators. We are not the attending recovery operator and we do not carry out the physical recovery or transport service ourselves. When an operator accepts a job, the service is provided by that operator directly to you.</p>
+                  <p>Recovero provides vehicle recovery services. We handle your request and ensure a driver is sent to your location. When a driver accepts a job, the service is provided directly to you.</p>
                 </div>
 
                 <div>
                   <h4 className="font-bold text-orange-500 mb-1">QUOTES & PRICING</h4>
-                  <p>Website prices and phone estimates are guide prices only unless confirmed by the attending operator. The operator sets and confirms the final price based on factors such as distance, vehicle type, vehicle condition, access, timing, and job complexity. Where possible, the operator confirms pricing before dispatch. In some situations, final pricing may only be confirmed once full details are known.</p>
+                  <p>Website prices and phone estimates are guide prices only unless confirmed before we start. We confirm the final price based on factors such as distance, vehicle type, vehicle condition, access, timing, and job complexity. Where possible, we confirm pricing before we arrive. In some situations, final pricing may only be confirmed once full details are known.</p>
                 </div>
 
                 <div>
                   <h4 className="font-bold text-orange-500 mb-1">PAYMENT</h4>
-                  <p>To secure the dispatch of an independent operator, Recovero takes a secure booking deposit via a payment link. The remaining balance for the recovery or transport job is then arranged and paid directly to the attending independent operator upon their arrival.</p>
+                  <p>To secure your booking, Recovero takes a secure booking deposit via a payment link. The remaining balance for the recovery or transport job is then arranged and paid directly to the recovery driver upon their arrival.</p>
                 </div>
 
                 <div>
                   <h4 className="font-bold text-orange-500 mb-1">AVAILABILITY & ETAS</h4>
-                  <p>Operator availability varies by area and demand. Estimated arrival times are not guaranteed and may change due to traffic, weather, road incidents, access restrictions, or changing operator availability.</p>
+                  <p>Availability varies by area and demand. Estimated arrival times are not guaranteed and may change due to traffic, weather, road incidents, access restrictions, or changing availability.</p>
                 </div>
 
                 <div>
                   <h4 className="font-bold text-orange-500 mb-1">CANCELLATIONS / ABORTIVE CALL-OUTS</h4>
-                  <p>If you need to cancel, tell us as soon as possible. If an operator has already dispatched or arrived, the operator may apply an abortive call-out or attendance charge for time and travel. If a booking is cancelled after the deposit has been paid and the driver dispatched, the deposit may be non-refundable.</p>
+                  <p>If you need to cancel, tell us as soon as possible. If a driver has already set off or arrived, we may apply an abortive call-out or attendance charge for time and travel. If a booking is cancelled after the deposit has been paid and the driver sent, the deposit may be non-refundable.</p>
                 </div>
 
                 <div>
                   <h4 className="font-bold text-orange-500 mb-1">LIABILITY LIMITS</h4>
-                  <p>The attending operator is responsible for the service they provide, including attendance, recovery method, transport, and on-site conduct. Recovero is not liable for acts, omissions, delays, loss, or damage arising from the operator's service. If there is a service issue, please raise it with the operator first. Recovero can assist with escalation and communication where needed.</p>
+                  <p>We are responsible for the service provided, including attendance, recovery method, transport, and on-site conduct. Recovero is not liable for acts, omissions, delays, loss, or damage arising from the service. If there is a service issue, please raise it with us immediately.</p>
                 </div>
 
                 <div>
                   <h4 className="font-bold text-orange-500 mb-1">COMPLAINTS HANDLING</h4>
-                  <p>For complaints, contact Recovero by phone or WhatsApp with your name, vehicle registration, date/time of job, and a summary of the issue. We will review the details and help route the complaint to the attending operator, then support follow-up where possible.</p>
+                  <p>For complaints, contact Recovero by phone or WhatsApp with your name, vehicle registration, date/time of job, and a summary of the issue. We will review the details and help route the complaint to the recovery driver, then support follow-up where possible.</p>
                 </div>
 
                 <div>
@@ -137,16 +137,16 @@ export default function Layout({ children }: LayoutProps) {
                 
                 <div>
                   <h4 className="font-bold text-orange-500 mb-1">INTRODUCTION</h4>
-                  <p>Recovero 24/7 is committed to protecting your privacy. This policy explains how we collect and process your personal information when you use our website, contact our dispatch team, or use our vehicle recovery introduction services.</p>
+                  <p>Recovero 24/7 is committed to protecting your privacy. This policy explains how we collect and process your personal information when you use our website, contact us, or use our vehicle recovery services.</p>
                 </div>
 
                 <div>
                   <h4 className="font-bold text-orange-500 mb-1">DATA WE COLLECT</h4>
-                  <p>To provide our rapid dispatch service, we collect the following information:</p>
+                  <p>To provide our rapid recovery service, we collect the following information:</p>
                   <ul className="list-disc pl-5 space-y-1">
                     <li>Contact Details: Your phone number (including WhatsApp) and name.</li>
                     <li>Vehicle Details: Your vehicle registration, make, model, and the nature of the breakdown or accident.</li>
-                    <li>Location Data: Your exact GPS coordinates (if you use our 'Share Exact Location' feature) or your provided address so we can dispatch an operator to you.</li>
+                    <li>Location Data: Your exact GPS coordinates (if you use our 'Share Exact Location' feature) or your provided address so we can send a driver to you.</li>
                     <li>Payment Records: Transaction references from secure payment links used for booking deposits.</li>
                   </ul>
                 </div>
@@ -155,8 +155,8 @@ export default function Layout({ children }: LayoutProps) {
                   <h4 className="font-bold text-orange-500 mb-1">HOW WE USE YOUR DATA</h4>
                   <p>We use your information strictly to facilitate your vehicle recovery. This includes:</p>
                   <ul className="list-disc pl-5 space-y-1">
-                    <li>Connecting you with an available independent recovery operator.</li>
-                    <li>Sending your location and vehicle details to the attending operator.</li>
+                    <li>Arranging your vehicle recovery.</li>
+                    <li>Sending your location and vehicle details to the recovery driver.</li>
                     <li>Communicating with you via phone or WhatsApp regarding ETAs and service updates.</li>
                     <li>Processing your booking deposit.</li>
                   </ul>
@@ -164,7 +164,7 @@ export default function Layout({ children }: LayoutProps) {
 
                 <div>
                   <h4 className="font-bold text-orange-500 mb-1">SHARING YOUR INFORMATION</h4>
-                  <p>We are an introducer service. To get you help, we MUST share your name, vehicle details, phone number, and location with the independent recovery operator assigned to your job. We do not sell your personal data to any third parties for marketing purposes.</p>
+                  <p>We provide recovery services. To get you help, we MUST share your name, vehicle details, phone number, and location with the recovery driver assigned to your job. We do not sell your personal data to any third parties for marketing purposes.</p>
                 </div>
 
                 <div>
@@ -179,7 +179,7 @@ export default function Layout({ children }: LayoutProps) {
 
                 <div>
                   <h4 className="font-bold text-orange-500 mb-1">YOUR RIGHTS (UK GDPR)</h4>
-                  <p>Under UK data protection law, you have the right to request access to the personal data we hold about you, ask for corrections, or request deletion of your data. To exercise these rights, please contact our dispatch team at 07366 302341.</p>
+                  <p>Under UK data protection law, you have the right to request access to the personal data we hold about you, ask for corrections, or request deletion of your data. To exercise these rights, please contact us at 07366 302341.</p>
                 </div>
 
                 <p className="text-xs text-gray-500 italic">Last updated: April 4, 2026</p>
@@ -243,7 +243,7 @@ export default function Layout({ children }: LayoutProps) {
 
                 <div>
                   <h4 className="font-bold text-orange-500 mb-1">CONTACT US</h4>
-                  <p>If you have any questions about our use of cookies or other technologies, please contact our dispatch team at 07366302341.</p>
+                  <p>If you have any questions about our use of cookies or other technologies, please contact us at 07366302341.</p>
                 </div>
 
                 <p className="text-xs text-gray-500 italic">Last updated: April 4, 2026</p>
@@ -467,7 +467,7 @@ export default function Layout({ children }: LayoutProps) {
                   <Phone className="w-5 h-5 text-brand-orange md:mr-4 mb-2 md:mb-0 md:mt-1" />
                   <div>
                     <p className="font-bold text-brand-dark text-sm md:text-base">07366302341</p>
-                    <p className="text-xs md:text-sm text-brand-dark font-medium">Call for Fast Dispatch</p>
+                    <p className="text-xs md:text-sm text-brand-dark font-medium">Call for Fast Help</p>
                   </div>
                 </li>
                 <li className="flex flex-col md:flex-row items-center md:items-start">

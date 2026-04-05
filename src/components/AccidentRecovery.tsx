@@ -14,10 +14,10 @@ import {
 
 export default function AccidentRecovery() {
   useEffect(() => {
-    document.title = "Accident Recovery Portsmouth | 24/7 Emergency Assistance";
+    document.title = "Accident Recovery Portsmouth | 24/7 Emergency Help | Recovero247";
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
-      metaDescription.setAttribute('content', 'Fast accident recovery in Portsmouth and Hampshire. We provide 24/7 emergency vehicle recovery for cars, vans, and motorcycles. Call for immediate help.');
+      metaDescription.setAttribute('content', 'Fast accident recovery in Portsmouth. Recovero247 provides 24/7 emergency vehicle recovery for cars, vans and motorcycles. Call for an upfront quote.');
     }
   }, []);
 
@@ -46,26 +46,26 @@ export default function AccidentRecovery() {
               Available 24/7
             </div>
             <h1 className="text-4xl sm:text-5xl md:text-7xl font-black leading-tight mb-6 uppercase tracking-tighter">
-              Rapid <span className="text-brand-orange">Accident Recovery</span>
+              24/7 <span className="text-brand-orange">Accident Recovery</span> in Portsmouth
             </h1>
             <p className="text-lg md:text-xl text-gray-300 mb-8 leading-relaxed font-medium">
-              Stranded after an accident? Our network of recovery specialists provides immediate dispatch for safe vehicle recovery.
+              Stranded after an accident? We provide 24/7 emergency vehicle recovery to get you and your vehicle off the road safely.
             </p>
             <a 
               href="tel:07366302341" 
               className="inline-flex items-center bg-brand-orange hover:bg-brand-orange/90 text-black font-black py-4 px-8 md:px-10 text-base md:text-lg uppercase tracking-widest transition-all transform hover:scale-105 rounded-full shadow-2xl"
             >
               <Phone className="mr-3 w-5 h-5 fill-current" />
-              Call for Fast Dispatch
+              GET IN TOUCH
             </a>
             <div className="flex flex-wrap items-center gap-4 mt-8 text-[10px] md:text-xs font-bold uppercase tracking-widest text-gray-400">
               <div className="flex items-center">
                 <CheckCircle2 className="w-3 h-3 md:w-4 md:h-4 mr-1.5 text-brand-orange" />
-                Approved Network Partner
+                24/7 Service
               </div>
               <div className="flex items-center">
                 <Clock className="w-3 h-3 md:w-4 md:h-4 mr-1.5 text-brand-orange" />
-                24/7 Service
+                Upfront Quote
               </div>
             </div>
           </motion.div>
@@ -208,18 +208,18 @@ export default function AccidentRecovery() {
             <div className="bg-brand-dark p-8 md:p-12 rounded-sm text-white relative overflow-hidden">
               <Truck className="absolute -bottom-10 -right-10 w-64 h-64 text-white/5 transform -rotate-12" />
               <h3 className="text-2xl font-black mb-4 uppercase tracking-widest">Need Immediate Help?</h3>
-              <p className="text-gray-400 mb-8">Our network of recovery specialists is standing by to assist you with any accident recovery emergency.</p>
+              <p className="text-gray-400 mb-8">We are standing by to assist you with any accident recovery emergency 24/7.</p>
               <a href="tel:07366302341" className="inline-flex items-center text-brand-orange font-black uppercase tracking-widest hover:translate-x-2 transition-transform">
-                Call for Fast Dispatch <ArrowRight className="ml-2 w-5 h-5" />
+                GET IN TOUCH <ArrowRight className="ml-2 w-5 h-5" />
               </a>
               <div className="flex flex-wrap items-center gap-3 mt-6 text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-gray-500">
                 <div className="flex items-center">
                   <CheckCircle2 className="w-3 h-3 mr-1 text-brand-orange" />
-                  Approved Network Partner
+                  24/7 Service
                 </div>
                 <div className="flex items-center">
                   <Clock className="w-3 h-3 mr-1 text-brand-orange" />
-                  24/7 Service
+                  Upfront Quote
                 </div>
               </div>
             </div>

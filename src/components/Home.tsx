@@ -6,10 +6,11 @@ import {
   ChevronUp, 
   Truck,
   CheckCircle2,
-  Clock
+  Clock,
+  ArrowRight
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { SERVICES, FAQS, LOCATIONS } from '../constants';
+import { SERVICES, FAQS, LOCATIONS, NAV_LINKS } from '../constants';
 
 export default function Home() {
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
@@ -18,7 +19,7 @@ export default function Home() {
     document.title = "Recovero | 24/7 Fast Vehicle Recovery & Breakdown Assistance";
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
-      metaDescription.setAttribute('content', 'Stranded? Recovero provides rapid 24/7 vehicle recovery and breakdown assistance across Portsmouth, Havant, and Hampshire. Call for immediate dispatch and fixed quotes.');
+      metaDescription.setAttribute('content', 'Stranded? Recovero provides rapid 24/7 vehicle recovery and breakdown assistance across Portsmouth, Havant, and Hampshire. Call for fast recovery and fixed quotes.');
     }
   }, []);
 
@@ -105,10 +106,10 @@ export default function Home() {
               </h2>
               <div className="space-y-4 md:space-y-6 text-brand-dark text-sm sm:text-base md:text-lg leading-relaxed font-medium">
                 <p>
-                  Recovero connects you to a vast network of vetted recovery specialists across Hampshire, ensuring we reach you faster than anyone else.
+                  Recovero provides professional vehicle recovery and transport across Hampshire, ensuring we reach you fast when you need it most.
                 </p>
                 <p>
-                  Whether you're in <span className="text-brand-orange font-bold">Portsmouth</span>, Havant, or Winchester, our rapid-response vehicles are standing by to assist you immediately.
+                  Whether you're in <span className="text-brand-orange font-bold">Portsmouth</span>, Havant, or Winchester, our recovery drivers are standing by to assist you immediately.
                 </p>
               </div>
             </motion.div>
@@ -142,10 +143,10 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10 md:mb-16">
             <h2 className="text-2xl sm:text-3xl md:text-5xl font-black mb-3 md:mb-4">
-              Our <span className="text-brand-orange">Recovery Network</span>
+              Our <span className="text-brand-orange">Recovery Services</span>
             </h2>
             <p className="text-brand-dark max-w-2xl mx-auto text-sm sm:text-base md:text-lg font-medium">
-              We dispatch the nearest vetted specialist to your location for the fastest possible response.
+              We send a recovery driver to your location for the fastest possible response.
             </p>
           </div>
 
@@ -189,7 +190,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Priority Dispatch Section */}
+      {/* Priority Response Section */}
       <section className="py-16 px-4 bg-white border-t border-gray-100">
         <div className="max-w-4xl mx-auto">
           <div className="bg-orange-50 border-2 border-orange-500/20 p-8 md:p-12 rounded-3xl shadow-sm relative overflow-hidden">
@@ -201,14 +202,97 @@ export default function Home() {
             </h2>
             
             <p className="text-lg md:text-xl text-gray-700 leading-relaxed font-semibold text-center max-w-3xl mx-auto">
-              We operate a vetted local dispatch system rather than relying on just one or two trucks. This means we instantly coordinate with the closest available specialist to your exact location, slashing wait times and getting a recovery vehicle moving the moment you hang up the phone.
+              We operate a vetted local response system rather than relying on just one or two trucks. This means we instantly coordinate with the closest available driver to your exact location, slashing wait times and getting a recovery vehicle moving the moment you hang up the phone.
             </p>
             
             <div className="mt-8 flex justify-center items-center gap-3">
               <div className="h-2 w-2 bg-orange-500 rounded-full animate-ping" />
-              <span className="text-sm font-black uppercase tracking-widest text-orange-600">Priority Dispatch Active</span>
+              <span className="text-sm font-black uppercase tracking-widest text-orange-600">Priority Response Active</span>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Locations Grid Section */}
+      <section id="locations" className="relative py-16 md:py-32 bg-brand-dark text-white overflow-hidden">
+        {/* Decorative background elements */}
+        <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none opacity-20">
+          <div className="absolute -top-24 -left-24 w-96 h-96 bg-brand-orange rounded-full blur-[120px]" />
+          <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-brand-orange rounded-full blur-[120px]" />
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16 md:mb-24">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-3xl sm:text-4xl md:text-6xl font-black mb-6 uppercase tracking-tighter">
+                Areas We <span className="text-brand-orange">Cover</span>
+              </h2>
+              <div className="w-24 h-2 bg-brand-orange mx-auto mb-8" />
+              <p className="text-gray-400 max-w-2xl mx-auto font-medium text-lg md:text-xl leading-relaxed">
+                We provide 24/7 vehicle recovery and transport across these local areas and beyond. Our drivers are always nearby for a fast response.
+              </p>
+            </motion.div>
+          </div>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            {NAV_LINKS.find(link => link.name === 'Areas We Cover')?.subLinks?.map((location, index) => (
+              <motion.div
+                key={location.name}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.05 }}
+              >
+                <Link 
+                  to={location.href}
+                  className="group relative block bg-white/5 border border-white/10 p-8 md:p-10 rounded-sm hover:border-brand-orange/50 transition-all duration-500 overflow-hidden"
+                >
+                  {/* Hover background effect */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-brand-orange/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  
+                  <div className="relative z-10 flex items-center justify-between">
+                    <div>
+                      <span className="block text-[10px] font-black uppercase tracking-[0.3em] text-brand-orange mb-2 opacity-70">
+                        Local Service
+                      </span>
+                      <h3 className="text-xl md:text-2xl font-black uppercase tracking-tight group-hover:text-brand-orange transition-colors duration-300">
+                        {location.name}
+                      </h3>
+                    </div>
+                    <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-brand-orange group-hover:border-brand-orange transition-all duration-300 transform group-hover:rotate-45">
+                      <ArrowRight className="w-5 h-5 text-white group-hover:text-black transition-colors" />
+                    </div>
+                  </div>
+
+                  {/* Decorative line */}
+                  <div className="absolute bottom-0 left-0 w-0 h-1 bg-brand-orange group-hover:w-full transition-all duration-500" />
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+
+          <motion.div 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.5 }}
+            className="mt-20 text-center"
+          >
+            <p className="text-gray-500 font-bold uppercase tracking-widest text-sm mb-8">
+              Don't see your location? We cover all surrounding areas.
+            </p>
+            <a 
+              href="tel:07366302341" 
+              className="inline-flex items-center bg-white text-black hover:bg-brand-orange hover:text-black font-black py-4 px-10 rounded-full transition-all transform hover:scale-105 uppercase tracking-widest text-sm"
+            >
+              <Phone className="mr-3 w-4 h-4 fill-current" />
+              Call for a Quote
+            </a>
+          </motion.div>
         </div>
       </section>
 
@@ -257,7 +341,7 @@ export default function Home() {
               </div>
               
               <div className="mt-8 md:mt-12 p-6 bg-gray-50 border border-black/5 rounded-sm">
-                <p className="text-brand-dark font-bold mb-4">Still unsure? Just give us a quick call. We'll give you a price and ETA in seconds.</p>
+                <p className="text-brand-dark font-bold mb-4">Still unsure? Just give us a quick call. We'll give you a price and ETA immediately.</p>
                 <a href="tel:07366302341" className="inline-flex items-center bg-brand-orange hover:bg-brand-orange/90 text-black font-black py-4 px-8 uppercase tracking-widest transition-all text-sm md:text-base rounded-full">
                   <Phone className="mr-2 w-5 h-5" />
                   GET IN TOUCH
@@ -278,7 +362,7 @@ export default function Home() {
             Stranded? <span className="text-white">We'll Get You Moving.</span>
           </h2>
           <p className="text-sm sm:text-base md:text-xl text-black/80 mb-8 md:mb-12 font-medium">
-            Call our dispatch center now for an immediate ETA and a free, no-obligation quote.
+            Call us now for a fast ETA and a free, no-obligation quote.
           </p>
           <a href="tel:07366302341" className="w-full sm:w-auto bg-black hover:bg-black/90 text-brand-orange font-black py-4 md:py-5 px-10 md:px-12 text-base md:text-lg uppercase tracking-widest transition-all transform hover:scale-110 rounded-full shadow-2xl inline-block">
             GET IN TOUCH
@@ -286,7 +370,7 @@ export default function Home() {
           <div className="flex flex-wrap items-center justify-center gap-4 mt-8 text-[10px] md:text-xs font-bold uppercase tracking-widest text-black/60">
             <div className="flex items-center">
               <CheckCircle2 className="w-3 h-3 md:w-4 md:h-4 mr-1.5 text-black" />
-              Approved Network Partner
+              Trusted Local Service
             </div>
             <div className="flex items-center">
               <Clock className="w-3 h-3 md:w-4 md:h-4 mr-1.5 text-black" />

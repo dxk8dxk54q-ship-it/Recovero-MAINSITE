@@ -14,10 +14,10 @@ import {
 
 export default function VehicleTransport() {
   useEffect(() => {
-    document.title = "Vehicle Transport Hampshire | Safe & Reliable Car Transport";
+    document.title = "Vehicle Transport Portsmouth | Safe & Reliable Car Moves | Recovero247";
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
-      metaDescription.setAttribute('content', 'Professional vehicle transport across Hampshire and the UK. We offer safe transport for classic, luxury, and everyday cars. Call for a quote today!');
+      metaDescription.setAttribute('content', 'Professional vehicle transport in Portsmouth and across the UK. Recovero247 offers safe transport for classic, luxury and everyday cars. Call for a quote.');
     }
   }, []);
 
@@ -46,26 +46,26 @@ export default function VehicleTransport() {
               Professional Transport
             </div>
             <h1 className="text-4xl sm:text-5xl md:text-7xl font-black leading-tight mb-6 uppercase tracking-tighter">
-              Vehicle <span className="text-brand-orange">Transport Service</span>
+              Professional <span className="text-brand-orange">Vehicle Transport</span> in Portsmouth
             </h1>
             <p className="text-lg md:text-xl text-gray-300 mb-8 leading-relaxed font-medium">
-              Need to move a vehicle? Our network of recovery specialists provides rapid-response vehicles for safe, professional transport.
+              Need to move a vehicle? We provide safe and professional vehicle transport for breakdowns, non-runners and private moves across Portsmouth and the UK.
             </p>
             <a 
               href="tel:07366302341" 
               className="inline-flex items-center bg-brand-orange hover:bg-brand-orange/90 text-black font-black py-4 px-8 md:px-10 text-base md:text-lg uppercase tracking-widest transition-all transform hover:scale-105 rounded-full shadow-2xl"
             >
               <Phone className="mr-3 w-5 h-5 fill-current" />
-              Get a Free Quote Now
+              GET IN TOUCH
             </a>
             <div className="flex flex-wrap items-center gap-4 mt-8 text-[10px] md:text-xs font-bold uppercase tracking-widest text-gray-400">
               <div className="flex items-center">
                 <CheckCircle2 className="w-3 h-3 md:w-4 md:h-4 mr-1.5 text-brand-orange" />
-                Approved Network Partner
+                24/7 Service
               </div>
               <div className="flex items-center">
                 <Clock className="w-3 h-3 md:w-4 md:h-4 mr-1.5 text-brand-orange" />
-                24/7 Service
+                Upfront Quote
               </div>
             </div>
           </motion.div>
@@ -172,7 +172,7 @@ export default function VehicleTransport() {
               Call for a quick quote – we’ll share guide pricing and confirm final costs before transport where possible.
             </p>
             <p className="text-xs text-gray-500 uppercase tracking-widest font-black">
-              Pricing is indicative; final pricing is set by the attending operator.
+              Pricing is indicative; final pricing is set by the recovery driver.
             </p>
           </div>
 
@@ -215,24 +215,24 @@ export default function VehicleTransport() {
                 ))}
               </div>
               <p className="mt-8 text-[10px] text-gray-500 uppercase tracking-widest font-bold">
-                Customers pay the attending operator directly on completion.
+                Customers pay the recovery driver directly on completion.
               </p>
             </div>
             <div className="bg-brand-dark p-8 md:p-12 rounded-sm text-white relative overflow-hidden">
               <Truck className="absolute -bottom-10 -right-10 w-64 h-64 text-white/5 transform -rotate-12" />
               <h3 className="text-2xl font-black mb-4 uppercase tracking-widest">Book Your Transport</h3>
-              <p className="text-gray-400 mb-8">Our network of recovery specialists is ready to help you move your vehicle safely and efficiently.</p>
+              <p className="text-gray-400 mb-8">We are ready to help you move your vehicle safely and efficiently 24/7.</p>
               <a href="tel:07366302341" className="inline-flex items-center text-brand-orange font-black uppercase tracking-widest hover:translate-x-2 transition-transform">
-                Call for Fast Dispatch <ArrowRight className="ml-2 w-5 h-5" />
+                GET IN TOUCH <ArrowRight className="ml-2 w-5 h-5" />
               </a>
               <div className="flex flex-wrap items-center gap-3 mt-6 text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-gray-500">
                 <div className="flex items-center">
                   <CheckCircle2 className="w-3 h-3 mr-1 text-brand-orange" />
-                  Approved Network Partner
+                  24/7 Service
                 </div>
                 <div className="flex items-center">
                   <Clock className="w-3 h-3 mr-1 text-brand-orange" />
-                  24/7 Service
+                  Upfront Quote
                 </div>
               </div>
             </div>

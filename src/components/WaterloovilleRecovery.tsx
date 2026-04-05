@@ -10,10 +10,10 @@ import {
 
 export default function WaterloovilleRecovery() {
   useEffect(() => {
-    document.title = "Vehicle Recovery Waterlooville | 24/7 Breakdown Assistance";
+    document.title = "Vehicle Recovery Waterlooville | 24/7 Breakdown Help | Recovero247";
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
-      metaDescription.setAttribute('content', 'Stranded in Waterlooville? Get rapid 24/7 vehicle recovery and breakdown assistance. Our local network reaches you fast in Cowplain, Horndean, and on the A3.');
+      metaDescription.setAttribute('content', 'Need vehicle recovery in Waterlooville? Recovero247 helps with breakdowns, non-runners, accident recovery and vehicle transport across Waterlooville and nearby areas.');
     }
   }, []);
 
@@ -38,13 +38,10 @@ export default function WaterloovilleRecovery() {
             className="max-w-3xl"
           >
             <h1 className="text-4xl sm:text-5xl md:text-7xl font-black leading-tight mb-6 uppercase tracking-tighter">
-              Vehicle Recovery in <span className="text-brand-orange">Waterlooville</span>
+              24/7 <span className="text-brand-orange">Vehicle Recovery</span> in Waterlooville
             </h1>
-            <p className="text-lg md:text-xl text-gray-300 mb-4 leading-relaxed font-medium">
-              Fast vehicle recovery, breakdown help, and roadside assistance across Waterlooville 24/7.
-            </p>
             <p className="text-lg md:text-xl text-gray-300 mb-8 leading-relaxed font-medium">
-              Need vehicle recovery in Waterlooville right now? We help with non-starters, breakdowns, accident-damaged vehicles, and safe transport to your garage or home. Whether you are stuck in Cowplain, Horndean, the town centre, or near Waterlooville Precinct, call for quick local support.
+              Need vehicle recovery in Waterlooville? Recovero247 helps with breakdowns, non-runners, accident recovery and vehicle transport across Waterlooville and nearby areas.
             </p>
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
               <a 
@@ -52,7 +49,7 @@ export default function WaterloovilleRecovery() {
                 className="inline-flex items-center bg-brand-orange hover:bg-brand-orange/90 text-black font-black py-4 px-8 md:px-10 text-base md:text-lg uppercase tracking-widest transition-all transform hover:scale-105 rounded-full shadow-2xl"
               >
                 <Phone className="mr-3 w-5 h-5 fill-current" />
-                Call now for vehicle recovery in Waterlooville
+                GET IN TOUCH
               </a>
             </div>
           </motion.div>
@@ -159,8 +156,18 @@ export default function WaterloovilleRecovery() {
           </h2>
           <div className="flex flex-col items-center">
             <a href="tel:07366302341" className="w-full sm:w-auto bg-black hover:bg-black/90 text-brand-orange font-black py-4 md:py-5 px-10 md:px-12 text-base md:text-lg uppercase tracking-widest transition-all transform hover:scale-110 rounded-full shadow-2xl inline-block">
-              Call for Fast Dispatch
+              GET IN TOUCH
             </a>
+            <div className="flex flex-wrap items-center justify-center gap-4 mt-8 text-[10px] md:text-xs font-bold uppercase tracking-widest text-black/60">
+              <div className="flex items-center">
+                <CheckCircle2 className="w-3 h-3 md:w-4 md:h-4 mr-1.5 text-black" />
+                24/7 Service
+              </div>
+              <div className="flex items-center">
+                <Clock className="w-3 h-3 md:w-4 md:h-4 mr-1.5 text-black" />
+                Upfront Quote
+              </div>
+            </div>
           </div>
         </div>
       </section>

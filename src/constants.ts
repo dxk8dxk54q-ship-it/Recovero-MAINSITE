@@ -29,13 +29,13 @@ export const SERVICES = [
   {
     title: 'Breakdown Assistance',
     image: 'https://github.com/dxk8dxk54q-ship-it/Recovero/blob/main/images/roadside-issues.jpg?raw=true',
-    description: 'Our network of vetted specialists provides the fastest roadside recovery for all breakdowns.',
+    description: 'We provide fast roadside recovery for all breakdowns across Hampshire.',
     href: '/breakdown-recovery'
   },
   {
     title: 'Accident Recovery',
     image: 'https://github.com/dxk8dxk54q-ship-it/Recovero/blob/main/images/accident-recovery.jpg?raw=true',
-    description: 'Immediate dispatch of recovery specialists for vehicles involved in accidents.',
+    description: 'Fast recovery for vehicles involved in accidents, safe transport to your home or garage.',
     href: '/accident-recovery'
   },
 ];
@@ -43,7 +43,7 @@ export const SERVICES = [
 export const FAQS = [
   {
     question: 'How quickly can you get to me?',
-    answer: 'We dispatch the nearest specialist in our network immediately to ensure the fastest possible response time.',
+    answer: 'We send a recovery driver immediately to ensure the fastest possible response time.',
   },
   {
     question: 'Do you cover Havant and nearby areas?',
