@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
-import { motion } from 'motion/react';
+import React, { useEffect, useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
+import { Link } from 'react-router-dom';
 import { 
   Phone, 
   CheckCircle2, 
@@ -8,10 +9,36 @@ import {
   MapPin,
   ArrowRight,
   Truck,
-  ShieldAlert
+  ShieldAlert,
+  ChevronDown,
+  ChevronUp
 } from 'lucide-react';
 
+const PORTSMOUTH_FAQS = [
+  {
+    question: 'How fast can you reach me in Portsmouth?',
+    answer: 'We aim to reach most Portsmouth locations within 30 minutes, depending on traffic on the M27 or A3. Our drivers are local to the area and know the quickest routes.',
+  },
+  {
+    question: 'Do you cover Southsea and the seafront?',
+    answer: 'Yes, we provide full recovery services across Southsea, the seafront, and all surrounding residential areas in Portsmouth.',
+  },
+  {
+    question: 'Can you recover my vehicle from the Portsmouth International Port?',
+    answer: 'Yes, we can assist with vehicle recovery and transport to and from the Portsmouth ferry terminal and port areas for all types of vehicles.',
+  },
+  {
+    question: 'Are you available for breakdowns on the M27 near Portsmouth?',
+    answer: 'Absolutely. We provide 24/7 emergency roadside recovery on the M27, A27, and all major routes leading into Portsmouth.',
+  },
+  {
+    question: 'What types of vehicles do you recover in Portsmouth?',
+    answer: 'We recover cars, vans, and motorcycles. Whether it\'s a breakdown, accident, or a non-runner that needs transport, we have the equipment to help.',
+  }
+];
+
 export default function PortsmouthRecovery() {
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
   useEffect(() => {
     document.title = "Vehicle Recovery Portsmouth | 24/7 Breakdown Help | Recovero247";
     const metaDescription = document.querySelector('meta[name="description"]');
@@ -140,28 +167,24 @@ export default function PortsmouthRecovery() {
             {[
               {
                 title: "Breakdown Recovery",
-                desc: "Fast recovery for all vehicle breakdowns across Portsmouth.",
-                icon: AlertTriangle
+                desc: "For non-starters, roadside issues and breakdowns in Portsmouth.",
+                icon: AlertTriangle,
+                link: "/breakdown-recovery",
+                linkText: "View breakdown recovery"
               },
               {
                 title: "Accident Recovery",
-                desc: "Immediate help for vehicles involved in accidents.",
-                icon: ShieldAlert
-              },
-              {
-                title: "Jump Starts",
-                desc: "Rapid response for flat batteries and starting issues.",
-                icon: Clock
-              },
-              {
-                title: "Flat Tyres",
-                desc: "Roadside assistance for tyre changes and punctures.",
-                icon: Truck
+                desc: "For damaged vehicles that need safe transport after a crash.",
+                icon: ShieldAlert,
+                link: "/accident-recovery",
+                linkText: "View accident recovery"
               },
               {
                 title: "Vehicle Transport",
-                desc: "Secure transport for luxury, classic, and everyday cars.",
-                icon: CheckCircle2
+                desc: "For moving vehicles to a garage, home or another location.",
+                icon: Truck,
+                link: "/vehicle-transport",
+                linkText: "View vehicle transport"
               }
             ].map((service, index) => (
               <motion.div
@@ -170,13 +193,76 @@ export default function PortsmouthRecovery() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-white/5 border border-white/10 p-8 rounded-sm hover:border-brand-orange/50 transition-all group"
+                className="bg-white/5 border border-white/10 p-8 rounded-sm hover:border-brand-orange/50 transition-all group flex flex-col h-full"
               >
                 <service.icon className="w-12 h-12 text-brand-orange mb-6 group-hover:scale-110 transition-transform" />
                 <h3 className="text-xl font-black mb-4 uppercase tracking-widest">{service.title}</h3>
-                <p className="text-gray-400 leading-relaxed">{service.desc}</p>
+                <p className="text-gray-400 leading-relaxed mb-6 flex-grow">{service.desc}</p>
+                <Link 
+                  to={service.link} 
+                  className="inline-flex items-center text-brand-orange font-bold uppercase tracking-widest text-sm hover:underline group/link"
+                >
+                  [{service.linkText}]
+                  <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover/link:translate-x-1" />
+                </Link>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section id="faqs" className="py-16 md:py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-1 gap-10 md:gap-16 items-start max-w-3xl mx-auto">
+            <div>
+              <h2 className="text-3xl md:text-5xl font-black mb-8 md:mb-12 uppercase tracking-tight">
+                Portsmouth <span className="text-brand-orange">FAQs</span>
+              </h2>
+              
+              <div className="space-y-3 md:space-y-4">
+                {PORTSMOUTH_FAQS.map((faq, index) => (
+                  <div 
+                    key={index}
+                    className="border border-black/10 rounded-sm overflow-hidden bg-white"
+                  >
+                    <button
+                      onClick={() => setOpenFaqIndex(openFaqIndex === index ? null : index)}
+                      className="w-full flex justify-between items-center p-4 md:p-6 text-left hover:bg-black/5 transition-colors"
+                    >
+                      <span className="font-bold text-sm sm:text-base md:text-lg pr-4 text-brand-dark">{faq.question}</span>
+                      {openFaqIndex === index ? (
+                        <ChevronUp className="w-4 h-4 md:w-5 md:h-5 text-brand-orange flex-shrink-0" />
+                      ) : (
+                        <ChevronDown className="w-4 h-4 md:w-5 md:h-5 text-brand-orange flex-shrink-0" />
+                      )}
+                    </button>
+                    <AnimatePresence>
+                      {openFaqIndex === index && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: 'auto', opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          className="overflow-hidden"
+                        >
+                          <div className="p-4 md:p-6 pt-0 text-brand-dark text-xs sm:text-sm md:text-base leading-relaxed border-t border-black/5 font-medium">
+                            {faq.answer}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                ))}
+              </div>
+              
+              <div className="mt-8 md:mt-12 p-6 bg-gray-50 border border-black/5 rounded-sm">
+                <p className="text-brand-dark font-bold mb-4">Have more questions about our Portsmouth services? Call us for immediate help.</p>
+                <a href="tel:07366302341" className="inline-flex items-center bg-brand-orange hover:bg-brand-orange/90 text-black font-black py-4 px-8 uppercase tracking-widest transition-all text-sm md:text-base rounded-full">
+                  <Phone className="mr-2 w-5 h-5" />
+                  GET IN TOUCH
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </section>

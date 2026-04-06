@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { motion } from 'motion/react';
+import { Link } from 'react-router-dom';
 import { 
   Phone, 
   CheckCircle2, 
@@ -46,10 +47,10 @@ export default function AccidentRecovery() {
               Available 24/7
             </div>
             <h1 className="text-4xl sm:text-5xl md:text-7xl font-black leading-tight mb-6 uppercase tracking-tighter">
-              24/7 <span className="text-brand-orange">Accident Recovery</span> in Portsmouth
+              24/7 <span className="text-brand-orange">Accident Recovery</span>
             </h1>
             <p className="text-lg md:text-xl text-gray-300 mb-8 leading-relaxed font-medium">
-              Stranded after an accident? We provide 24/7 emergency vehicle recovery to get you and your vehicle off the road safely.
+              Stranded after an accident? We provide 24/7 emergency vehicle recovery to get you and your vehicle off the road safely. Need help after a crash? See our <Link to="/portsmouth-recovery" className="text-brand-orange hover:underline">accident and vehicle recovery in Portsmouth</Link>.
             </p>
             <a 
               href="tel:07366302341" 

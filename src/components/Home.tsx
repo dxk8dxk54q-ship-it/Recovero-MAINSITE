@@ -109,7 +109,7 @@ export default function Home() {
                   Recovero provides professional vehicle recovery and transport across Hampshire, ensuring we reach you fast when you need it most.
                 </p>
                 <p>
-                  Whether you're in <span className="text-brand-orange font-bold">Portsmouth</span>, Havant, or Winchester, our recovery drivers are standing by to assist you immediately.
+                  Whether you're in <Link to="/portsmouth-recovery" className="text-brand-orange font-bold hover:underline">Portsmouth</Link>, Havant, or Winchester, our recovery drivers are standing by to assist you immediately.
                 </p>
               </div>
             </motion.div>

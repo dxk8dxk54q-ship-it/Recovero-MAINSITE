@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { motion } from 'motion/react';
+import { Link } from 'react-router-dom';
 import { 
   Phone, 
   CheckCircle2, 
@@ -46,10 +47,10 @@ export default function VehicleTransport() {
               Professional Transport
             </div>
             <h1 className="text-4xl sm:text-5xl md:text-7xl font-black leading-tight mb-6 uppercase tracking-tighter">
-              Professional <span className="text-brand-orange">Vehicle Transport</span> in Portsmouth
+              Professional <span className="text-brand-orange">Vehicle Transport</span>
             </h1>
             <p className="text-lg md:text-xl text-gray-300 mb-8 leading-relaxed font-medium">
-              Need to move a vehicle? We provide safe and professional vehicle transport for breakdowns, non-runners and private moves across Portsmouth and the UK.
+              Need to move a vehicle? We provide safe and professional vehicle transport for breakdowns, non-runners and private moves across Portsmouth and the UK. We also arrange <Link to="/portsmouth-recovery" className="text-brand-orange hover:underline">vehicle transport in Portsmouth</Link> and nearby areas.
             </p>
             <a 
               href="tel:07366302341" 
