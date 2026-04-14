@@ -1,13 +1,15 @@
-# Set correct MIME types for sitemap and robots
 AddType application/xml .xml
 AddType text/plain .txt
 
-# Ensure XML files are recognized correctly
 <Files "sitemap.xml">
-    ForceType application/xml
+  ForceType application/xml
 </Files>
 
-# Ensure robots.txt is recognized correctly
 <Files "robots.txt">
-    ForceType text/plain
+  ForceType text/plain
 </Files>
+
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.html [L]
