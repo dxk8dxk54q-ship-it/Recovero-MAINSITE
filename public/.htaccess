@@ -1,0 +1,13 @@
+# Set correct MIME types for sitemap and robots
+AddType application/xml .xml
+AddType text/plain .txt
+
+# Ensure XML files are recognized correctly
+<Files "sitemap.xml">
+    ForceType application/xml
+</Files>
+
+# Ensure robots.txt is recognized correctly
+<Files "robots.txt">
+    ForceType text/plain
+</Files>
