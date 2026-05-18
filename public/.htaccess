@@ -12,7 +12,7 @@ AddType text/plain .txt
     ForceType text/plain
 </Files>
 
-# React Router catch-all for Hostinger SPA
+# Single Page Application routing (prevent 404s on direct URL access)
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
@@ -21,4 +21,3 @@ AddType text/plain .txt
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteRule . /index.html [L]
 </IfModule>
-
