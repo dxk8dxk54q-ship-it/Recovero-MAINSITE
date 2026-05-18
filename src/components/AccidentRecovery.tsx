@@ -50,7 +50,7 @@ export default function AccidentRecovery() {
               24/7 <span className="text-brand-orange">Accident Recovery</span>
             </h1>
             <p className="text-lg md:text-xl text-gray-300 mb-8 leading-relaxed font-medium">
-              Stranded after an accident? We provide 24/7 emergency vehicle recovery to get you and your vehicle off the road safely. Need help after a crash? See our <Link to="/portsmouth-recovery" className="text-brand-orange hover:underline">accident and vehicle recovery in Portsmouth</Link>.
+              Stranded after an accident? We provide 24/7 emergency vehicle recovery to get you and your vehicle off the road safely. Need help after a crash? See our <Link to="/accident-recovery/portsmouth" className="text-brand-orange hover:underline">accident and vehicle recovery in Portsmouth</Link>.
             </p>
             <a 
               href="tel:07366302341" 
@@ -189,11 +189,11 @@ export default function AccidentRecovery() {
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {[
-                  { name: "Accident recovery in Portsmouth", href: "/portsmouth-recovery" },
-                  { name: "Accident recovery in Havant", href: "/havant-recovery" },
-                  { name: "Accident recovery in Fareham", href: "/fareham-recovery" },
-                  { name: "Accident recovery in Gosport", href: "/gosport-recovery" },
-                  { name: "Accident recovery in Waterlooville", href: "/waterlooville-recovery" }
+                  { name: "Accident recovery in Portsmouth", href: "/accident-recovery/portsmouth" },
+                  { name: "Accident recovery in Havant", href: "/accident-recovery/havant" },
+                  { name: "Accident recovery in Fareham", href: "/accident-recovery/fareham" },
+                  { name: "Accident recovery in Gosport", href: "/accident-recovery/gosport" },
+                  { name: "Accident recovery in Waterlooville", href: "/accident-recovery/waterlooville" }
                 ].map((link, index) => (
                   <a 
                     key={index} 

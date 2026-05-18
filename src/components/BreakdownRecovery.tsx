@@ -48,7 +48,7 @@ export default function BreakdownRecovery() {
               24/7 <span className="text-brand-orange">Breakdown Recovery</span>
             </h1>
             <p className="text-lg md:text-xl text-gray-300 mb-8 leading-relaxed font-medium">
-              Stranded with a breakdown? We provide 24/7 roadside help and vehicle recovery for cars, vans and motorcycles across Portsmouth and Hampshire. We provide breakdown recovery across Hampshire, including <Link to="/portsmouth-recovery" className="text-brand-orange hover:underline">Portsmouth breakdown recovery</Link>.
+              Stranded with a breakdown? We provide 24/7 roadside help and vehicle recovery for cars, vans and motorcycles across Portsmouth and Hampshire. We provide breakdown recovery across Hampshire, including <Link to="/breakdown-recovery/portsmouth" className="text-brand-orange hover:underline">Portsmouth breakdown recovery</Link>.
             </p>
             <a 
               href="tel:07366302341" 
@@ -206,11 +206,11 @@ export default function BreakdownRecovery() {
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {[
-                  { name: "Breakdown recovery in Portsmouth", href: "/portsmouth-recovery" },
-                  { name: "Breakdown recovery in Havant", href: "/havant-recovery" },
-                  { name: "Breakdown recovery in Fareham", href: "/fareham-recovery" },
-                  { name: "Breakdown recovery in Gosport", href: "/gosport-recovery" },
-                  { name: "Breakdown recovery in Waterlooville", href: "/waterlooville-recovery" }
+                  { name: "Breakdown recovery in Portsmouth", href: "/breakdown-recovery/portsmouth" },
+                  { name: "Breakdown recovery in Havant", href: "/breakdown-recovery/havant" },
+                  { name: "Breakdown recovery in Fareham", href: "/breakdown-recovery/fareham" },
+                  { name: "Breakdown recovery in Gosport", href: "/breakdown-recovery/gosport" },
+                  { name: "Breakdown recovery in Waterlooville", href: "/breakdown-recovery/waterlooville" }
                 ].map((link, index) => (
                   <a 
                     key={index} 

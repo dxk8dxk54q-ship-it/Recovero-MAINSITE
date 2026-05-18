@@ -50,7 +50,7 @@ export default function VehicleTransport() {
               Professional <span className="text-brand-orange">Vehicle Transport</span>
             </h1>
             <p className="text-lg md:text-xl text-gray-300 mb-8 leading-relaxed font-medium">
-              Need to move a vehicle? We provide safe and professional vehicle transport for breakdowns, non-runners and private moves across Portsmouth and the UK. We also arrange <Link to="/portsmouth-recovery" className="text-brand-orange hover:underline">vehicle transport in Portsmouth</Link> and nearby areas.
+              Need to move a vehicle? We provide safe and professional vehicle transport for breakdowns, non-runners and private moves across Portsmouth and the UK. We also arrange <Link to="/vehicle-transport/portsmouth" className="text-brand-orange hover:underline">vehicle transport in Portsmouth</Link> and nearby areas.
             </p>
             <a 
               href="tel:07366302341" 
@@ -199,11 +199,11 @@ export default function VehicleTransport() {
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {[
-                  { name: "Vehicle transport in Portsmouth", href: "/portsmouth-recovery" },
-                  { name: "Vehicle transport in Havant", href: "/havant-recovery" },
-                  { name: "Vehicle transport in Fareham", href: "/fareham-recovery" },
-                  { name: "Vehicle transport in Gosport", href: "/gosport-recovery" },
-                  { name: "Vehicle transport in Waterlooville", href: "/waterlooville-recovery" }
+                  { name: "Vehicle transport in Portsmouth", href: "/vehicle-transport/portsmouth" },
+                  { name: "Vehicle transport in Havant", href: "/vehicle-transport/havant" },
+                  { name: "Vehicle transport in Fareham", href: "/vehicle-transport/fareham" },
+                  { name: "Vehicle transport in Gosport", href: "/vehicle-transport/gosport" },
+                  { name: "Vehicle transport in Waterlooville", href: "/vehicle-transport/waterlooville" }
                 ].map((link, index) => (
                   <a 
                     key={index} 

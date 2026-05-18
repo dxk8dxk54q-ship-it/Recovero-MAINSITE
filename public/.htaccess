@@ -11,3 +11,14 @@ AddType text/plain .txt
 <Files "robots.txt">
     ForceType text/plain
 </Files>
+
+# React Router catch-all for Hostinger SPA
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+  RewriteRule ^index\.html$ - [L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . /index.html [L]
+</IfModule>
+
