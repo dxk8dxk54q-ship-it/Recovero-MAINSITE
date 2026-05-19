@@ -364,9 +364,6 @@ export default function Home() {
           <p className="text-sm sm:text-base md:text-xl text-black/80 mb-8 md:mb-12 font-medium">
             Call us now for a fast ETA and a free, no-obligation quote.
           </p>
-          <a href="tel:07366302341" className="w-full sm:w-auto bg-black hover:bg-black/90 text-brand-orange font-black py-4 md:py-5 px-10 md:px-12 text-base md:text-lg uppercase tracking-widest transition-all transform hover:scale-110 rounded-full shadow-2xl inline-block">
-            GET IN TOUCH
-          </a>
           <div className="flex flex-wrap items-center justify-center gap-4 mt-8 text-[10px] md:text-xs font-bold uppercase tracking-widest text-black/60">
             <div className="flex items-center">
               <CheckCircle2 className="w-3 h-3 md:w-4 md:h-4 mr-1.5 text-black" />
