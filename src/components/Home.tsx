@@ -387,7 +387,7 @@ export default function Home() {
           50% { opacity: 0.8; transform: scale(0.98); }
         }
         .animate-marquee {
-          animation: marquee 40s linear infinite;
+          animation: marquee 15s linear infinite;
         }
         .animate-pulse-slow {
           animation: pulse-slow 3s ease-in-out infinite;
