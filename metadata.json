@@ -1,5 +1,8 @@
 {
   "name": "Recovero MAINSITE",
   "description": "Professional vehicle recovery and transport services across Hampshire. Reliable recovery services.",
-  "requestFramePermissions": []
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
 }

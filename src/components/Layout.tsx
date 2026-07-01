@@ -485,6 +485,7 @@ export default function Layout({ children }: LayoutProps) {
                 <li><button onClick={() => setIsTermsOpen(true)} className="hover:text-brand-orange transition-colors">Terms & Conditions</button></li>
                 <li><button onClick={() => setIsPrivacyOpen(true)} className="hover:text-brand-orange transition-colors">Privacy Policy</button></li>
                 <li><button onClick={() => setIsCookiesOpen(true)} className="hover:text-brand-orange transition-colors">Cookie Policy</button></li>
+                <li><Link to="/recovery-partners" className="hover:text-brand-orange transition-colors">Become a Partner</Link></li>
                 <li><a href="#" className="hover:text-brand-orange transition-colors">Emergency Contact</a></li>
               </ul>
             </div>

@@ -19,6 +19,7 @@ import PetersfieldRecovery from './components/PetersfieldRecovery';
 import WinchesterRecovery from './components/WinchesterRecovery';
 import AndoverRecovery from './components/AndoverRecovery';
 import HaylingIslandRecovery from './components/HaylingIslandRecovery';
+import BecomePartner from './components/BecomePartner';
 import ScrollToTop from './components/ScrollToTop';
 
 function ScrollToHash() {
@@ -60,6 +61,7 @@ export default function App() {
           <Route path="/winchester-recovery" element={<WinchesterRecovery />} />
           <Route path="/andover-recovery" element={<AndoverRecovery />} />
           <Route path="/hayling-island-recovery" element={<HaylingIslandRecovery />} />
+          <Route path="/recovery-partners" element={<BecomePartner />} />
         </Routes>
       </Layout>
     </Router>
