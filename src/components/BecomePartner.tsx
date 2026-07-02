@@ -248,7 +248,7 @@ export default function BecomePartner() {
               </p>
               <div className="mt-8">
                 <img 
-                  src="/src/assets/images/securing_vehicle_1782931860066.jpg" 
+                  src="/images/securing-vehicle.jpg" 
                   alt="Securing Vehicle on Flatbed" 
                   className="w-full h-auto rounded-sm shadow-xl border border-gray-200 object-cover" 
                 />
@@ -297,7 +297,7 @@ export default function BecomePartner() {
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-12">
               <div className="col-span-1 sm:col-span-2 lg:col-span-3 grid md:grid-cols-2 gap-6 md:gap-8 mb-4">
                  <div className="relative h-64 md:h-80 rounded-sm overflow-hidden group">
-                   <img src="/src/assets/images/job_breakdown_recovery_1782931892895.jpg" alt="Breakdown Recovery" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                   <img src="/images/job-breakdown-recovery.jpg" alt="Breakdown Recovery" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                    <div className="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/40 to-transparent"></div>
                    <div className="absolute bottom-6 left-6">
                       <h3 className="text-xl font-black uppercase tracking-wider mb-2 text-white">Breakdown Recovery</h3>
@@ -305,7 +305,7 @@ export default function BecomePartner() {
                    </div>
                  </div>
                  <div className="relative h-64 md:h-80 rounded-sm overflow-hidden group">
-                   <img src="/src/assets/images/job_accident_recovery_1782931882136.jpg" alt="Accident Recovery" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                   <img src="/images/job-accident-recovery.jpg" alt="Accident Recovery" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                    <div className="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/40 to-transparent"></div>
                    <div className="absolute bottom-6 left-6">
                       <h3 className="text-xl font-black uppercase tracking-wider mb-2 text-white">Accident Recovery</h3>
@@ -422,7 +422,7 @@ export default function BecomePartner() {
             </div>
             <div className="order-1 md:order-2 relative">
                <img 
-                 src="/src/assets/images/happy_operator_1782931845221.jpg" 
+                 src="/images/happy-operator.jpg" 
                  alt="Professional Independent Recovery Operator" 
                  className="w-full h-auto rounded-sm shadow-2xl object-cover" 
                />
@@ -442,7 +442,7 @@ export default function BecomePartner() {
       <section className="relative py-24 md:py-32 bg-brand-dark">
         <div className="absolute inset-0 z-0">
           <img 
-            src="/src/assets/images/customer_interaction_1782931871114.jpg" 
+            src="/images/customer-interaction.jpg" 
             alt="Customer Interaction at Roadside" 
             className="w-full h-full object-cover opacity-40" 
           />
