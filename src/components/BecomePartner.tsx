@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { createClient } from '@supabase/supabase-js';
 import { 
   CheckCircle2, 
   Clock, 
@@ -15,12 +16,37 @@ import {
   DollarSign
 } from 'lucide-react';
 
+const supabaseUrl = (import.meta as any).env.VITE_SUPABASE_URL || '';
+const supabaseAnonKey = (import.meta as any).env.VITE_SUPABASE_ANON_KEY || '';
+
+// Initialize Supabase lazily so it doesn't crash on startup if credentials are missing
+let supabaseClient: any = null;
+const getSupabaseClient = () => {
+  if (!supabaseClient) {
+    if (!supabaseUrl || !supabaseAnonKey) {
+      throw new Error("Missing Supabase credentials");
+    }
+    supabaseClient = createClient(supabaseUrl, supabaseAnonKey);
+  }
+  return supabaseClient;
+};
+
 export default function BecomePartner() {
   useEffect(() => {
     document.title = "Join Recovero Recovery Network | Extra Recovery Jobs";
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
       metaDescription.setAttribute('content', "Join Recovero’s recovery partner network and receive suitable vehicle recovery, non-runner, transport and garage movement jobs in your area. Free to join.");
+    }
+
+    const isProductionSite = !window.location.hostname.includes('localhost') && 
+                             !window.location.hostname.includes('127.0.0.1') &&
+                             !window.location.hostname.includes('.run.app') &&
+                             !window.location.hostname.includes('ais-dev') &&
+                             !window.location.hostname.includes('ais-pre');
+                             
+    if (isProductionSite && (!supabaseUrl || !supabaseAnonKey)) {
+      console.error("Missing Supabase environment variables on production site");
     }
   }, []);
 
@@ -124,6 +150,97 @@ export default function BecomePartner() {
 
     setIsSending(true);
 
+    const isProductionSite = !window.location.hostname.includes('localhost') && 
+                             !window.location.hostname.includes('127.0.0.1') &&
+                             !window.location.hostname.includes('.run.app') &&
+                             !window.location.hostname.includes('ais-dev') &&
+                             !window.location.hostname.includes('ais-pre');
+
+    const useSupabase = !!(supabaseUrl && supabaseAnonKey);
+
+    if (isProductionSite && !useSupabase) {
+      console.error("Missing Supabase environment variables on production site");
+    }
+
+    if (useSupabase) {
+      try {
+        const client = getSupabaseClient();
+        
+        // Map payload to standard snake_case column names matching direct table inserts
+        const payload = {
+          company_name: formData.companyName,
+          contact_name: formData.contactName,
+          dispatch_phone: formData.dispatchPhone,
+          whatsapp_phone: formData.whatsappPhone,
+          email: formData.email,
+          business_postcode: formData.businessPostcode,
+          website_or_facebook: formData.websiteOrFacebook,
+          postcode_areas: formData.postcodeAreas,
+          towns_covered: formData.townsCovered,
+          hours_covered: formData.hoursCovered,
+          eta: formData.eta,
+          capability_roadside: formData.capabilityRoadside,
+          capability_home: formData.capabilityHome,
+          capability_non_runner: formData.capabilityNonRunner,
+          capability_winch: formData.capabilityWinch,
+          capability_motorway: formData.capabilityMotorway,
+          capability_accident: formData.capabilityAccident,
+          capability_specialist: formData.capabilitySpecialist,
+          capability_transport: formData.capabilityTransport,
+          service_preference: formData.servicePreference,
+          transport_lead_time: formData.transportLeadTime,
+          transport_pricing_notes: formData.transportPricingNotes,
+          vehicle_limits: formData.vehicleLimits,
+          price_local_recovery: formData.priceLocalRecovery,
+          price_non_runner: formData.priceNonRunner,
+          price_winch_addon: formData.priceWinchAddon,
+          miles_included: formData.milesIncluded,
+          price_extra_mile: formData.priceExtraMile,
+          mileage_type: formData.mileageType,
+          price_out_of_hours_uplift: formData.priceOutOfHoursUplift,
+          price_motorway_minimum: formData.priceMotorwayMinimum,
+          price_awkward_access_uplift: formData.priceAwkwardAccessUplift,
+          price_accident_uplift: formData.priceAccidentUplift,
+          price_severe_manual_quote: formData.priceSevereManualQuote,
+          pricing_notes: formData.pricingNotes,
+          extra_notes: formData.extraNotes,
+          confirm_accurate: formData.confirmAccurate
+        };
+
+        const { error } = await client
+          .from('partner_applications')
+          .insert([payload]);
+
+        if (error) {
+          console.error("Partner application submit failed", {
+            message: error?.message,
+            details: error?.details,
+            hint: error?.hint,
+            code: error?.code,
+            error
+          });
+          setErrorMessage(error.message || "Something went wrong. Please try again or email support@recovero247.co.uk.");
+          setIsSending(false);
+          return;
+        }
+
+        setSubmitted(true);
+      } catch (error: any) {
+        console.error("Partner application submit failed", {
+          message: error?.message,
+          details: error?.details || "",
+          hint: error?.hint || "",
+          code: error?.code || "",
+          error
+        });
+        setErrorMessage(error?.message || "Something went wrong. Please try again or email support@recovero247.co.uk.");
+      } finally {
+        setIsSending(false);
+      }
+      return;
+    }
+
+    // Fallback to local /api/partner-apply endpoint for local preview/development
     try {
       const response = await fetch('/api/partner-apply', {
         method: 'POST',
