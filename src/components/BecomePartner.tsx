@@ -208,9 +208,11 @@ export default function BecomePartner() {
         console.log("Partner application insert payload", payload);
         console.log("Partner application insert keys", Object.keys(payload));
 
-        const { error } = await client
+        const { data, error } = await client
           .from('partner_applications')
-          .insert([payload]);
+          .insert([payload])
+          .select()
+          .single();
 
         if (error) {
           console.error("Partner application submit failed", {
@@ -223,6 +225,17 @@ export default function BecomePartner() {
           setErrorMessage(error.message || "Something went wrong. Please try again or email support@recovero247.co.uk.");
           setIsSending(false);
           return;
+        }
+
+        try {
+          const { error: fnError } = await client.functions.invoke('send-partner-application-email', {
+            body: { application: data }
+          });
+          if (fnError) {
+             console.error("Failed to send email notification via Edge Function", fnError);
+          }
+        } catch (fnCatchError) {
+          console.error("Failed to send email notification via Edge Function", fnCatchError);
         }
 
         setSubmitted(true);
