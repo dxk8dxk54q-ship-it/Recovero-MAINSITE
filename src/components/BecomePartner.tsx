@@ -208,11 +208,9 @@ export default function BecomePartner() {
         console.log("Partner application insert payload", payload);
         console.log("Partner application insert keys", Object.keys(payload));
 
-        const { data, error } = await client
+        const { error } = await client
           .from('partner_applications')
-          .insert([payload])
-          .select()
-          .single();
+          .insert([payload]);
 
         if (error) {
           console.error("Partner application submit failed", {
@@ -229,7 +227,7 @@ export default function BecomePartner() {
 
         try {
           const { error: fnError } = await client.functions.invoke('send-partner-application-email', {
-            body: { application: data }
+            body: { application: payload }
           });
           if (fnError) {
              console.error("Failed to send email notification via Edge Function", fnError);
