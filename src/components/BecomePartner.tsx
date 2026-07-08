@@ -176,9 +176,25 @@ export default function BecomePartner() {
           business_postcode: formData.businessPostcode,
           website_or_facebook: formData.websiteOrFacebook,
           postcode_areas: formData.postcodeAreas,
-          towns_covered: formData.townsCovered,
+          towns_areas: formData.townsCovered,
           hours_covered: formData.hoursCovered,
-          eta: formData.eta,
+          eta_minutes: formData.eta,
+          service_preference: formData.servicePreference,
+          standard_local_recovery_price: formData.priceLocalRecovery,
+          non_runner_price: formData.priceNonRunner,
+          winch_add_on: formData.priceWinchAddon,
+          miles_included: formData.milesIncluded,
+          extra_mile_price: formData.priceExtraMile,
+          mileage_type: formData.mileageType,
+          out_of_hours_uplift: formData.priceOutOfHoursUplift,
+          motorway_minimum_price: formData.priceMotorwayMinimum,
+          awkward_access_uplift: formData.priceAwkwardAccessUplift,
+          accident_damaged_uplift: formData.priceAccidentUplift,
+          pricing_notes: formData.pricingNotes,
+          extra_notes: formData.extraNotes,
+          confirm_accurate: formData.confirmAccurate,
+          status: "new",
+          raw_payload: formData,
           capability_roadside: formData.capabilityRoadside,
           capability_home: formData.capabilityHome,
           capability_non_runner: formData.capabilityNonRunner,
@@ -186,26 +202,11 @@ export default function BecomePartner() {
           capability_motorway: formData.capabilityMotorway,
           capability_accident: formData.capabilityAccident,
           capability_specialist: formData.capabilitySpecialist,
-          capability_transport: formData.capabilityTransport,
-          service_preference: formData.servicePreference,
-          transport_lead_time: formData.transportLeadTime,
-          transport_pricing_notes: formData.transportPricingNotes,
-          vehicle_limits: formData.vehicleLimits,
-          price_local_recovery: formData.priceLocalRecovery,
-          price_non_runner: formData.priceNonRunner,
-          price_winch_addon: formData.priceWinchAddon,
-          miles_included: formData.milesIncluded,
-          price_extra_mile: formData.priceExtraMile,
-          mileage_type: formData.mileageType,
-          price_out_of_hours_uplift: formData.priceOutOfHoursUplift,
-          price_motorway_minimum: formData.priceMotorwayMinimum,
-          price_awkward_access_uplift: formData.priceAwkwardAccessUplift,
-          price_accident_uplift: formData.priceAccidentUplift,
-          price_severe_manual_quote: formData.priceSevereManualQuote,
-          pricing_notes: formData.pricingNotes,
-          extra_notes: formData.extraNotes,
-          confirm_accurate: formData.confirmAccurate
+          capability_transport: formData.capabilityTransport
         };
+
+        console.log("Partner application insert payload", payload);
+        console.log("Partner application insert keys", Object.keys(payload));
 
         const { error } = await client
           .from('partner_applications')
