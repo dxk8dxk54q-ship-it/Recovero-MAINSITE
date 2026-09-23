@@ -119,7 +119,7 @@ export default function AccidentRecovery() {
               <ul className="space-y-6">
                 {[
                   "Tell us your exact location and what condition the vehicle is in.",
-                  "We’ll get a recovery driver out to you as quickly as possible once it’s safe to do so.",
+                  "Once the vehicle is safe to move, we’ll check suitable recovery availability and confirm the ETA.",
                   "We’ll recover the vehicle to your chosen garage, storage site, or home address."
                 ].map((item, index) => (
                   <li key={index} className="flex items-start space-x-4">
