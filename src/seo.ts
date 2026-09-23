@@ -117,7 +117,7 @@ export function isKnownRoute(pathname: string) {
 
 export function canonicalUrl(pathname: string) {
   const normalized = normalizePath(pathname);
-  return normalized === '/' ? SITE_URL + '/' : SITE_URL + normalized;
+  return normalized === '/' ? SITE_URL + '/' : SITE_URL + normalized + '/';
 }
 
 export function buildStructuredData(pathname: string) {
