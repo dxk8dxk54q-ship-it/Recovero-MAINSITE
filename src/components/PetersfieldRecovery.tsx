@@ -66,7 +66,7 @@ export default function PetersfieldRecovery() {
               <ul className="space-y-4 mb-12">
                 {[
                   "Tell us your exact location, vehicle details, and what has happened.",
-                  "We’ll get a recovery driver out to you as quickly as possible.",
+                  "We’ll check suitable local recovery availability and confirm the ETA before the recovery is arranged.",
                   "We’ll confirm the ETA and recovery details as quickly as possible."
                 ].map((item, index) => (
                   <li key={index} className="flex items-start space-x-3">
