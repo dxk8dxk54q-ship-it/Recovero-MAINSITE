@@ -83,7 +83,7 @@ export default function PortsmouthRecovery() {
                 className="inline-flex items-center bg-brand-orange hover:bg-brand-orange/90 text-black font-black py-4 px-8 md:px-10 text-base md:text-lg uppercase tracking-widest transition-all transform hover:scale-105 rounded-full shadow-2xl"
               >
                 <Phone className="mr-3 w-5 h-5 fill-current" />
-                GET IN TOUCH
+                CALL NOW
               </a>
               <div className="flex flex-wrap items-center gap-4 text-[10px] md:text-xs font-bold uppercase tracking-widest text-gray-400">
                 <div className="flex items-center">
@@ -259,7 +259,7 @@ export default function PortsmouthRecovery() {
                 <p className="text-brand-dark font-bold mb-4">Have more questions about our Portsmouth services? Call us for immediate help.</p>
                 <a href="tel:07366302341" className="inline-flex items-center bg-brand-orange hover:bg-brand-orange/90 text-black font-black py-4 px-8 uppercase tracking-widest transition-all text-sm md:text-base rounded-full">
                   <Phone className="mr-2 w-5 h-5" />
-                  GET IN TOUCH
+                  CALL NOW
                 </a>
               </div>
             </div>
@@ -287,7 +287,7 @@ export default function PortsmouthRecovery() {
           </p>
           <div className="flex flex-col items-center">
             <a href="tel:07366302341" className="w-full sm:w-auto bg-black hover:bg-black/90 text-brand-orange font-black py-4 md:py-5 px-10 md:px-12 text-base md:text-lg uppercase tracking-widest transition-all transform hover:scale-110 rounded-full shadow-2xl inline-block">
-              GET IN TOUCH
+              CALL NOW
             </a>
             <div className="flex flex-wrap items-center justify-center gap-4 mt-8 text-[10px] md:text-xs font-bold uppercase tracking-widest text-black/60">
               <div className="flex items-center">
