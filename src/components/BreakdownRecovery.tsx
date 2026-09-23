@@ -55,7 +55,7 @@ export default function BreakdownRecovery() {
               className="inline-flex items-center bg-brand-orange hover:bg-brand-orange/90 text-black font-black py-4 px-8 md:px-10 text-base md:text-lg uppercase tracking-widest transition-all transform hover:scale-105 rounded-full shadow-2xl"
             >
               <Phone className="mr-3 w-5 h-5 fill-current" />
-              GET IN TOUCH
+              CALL NOW
             </a>
             <div className="flex flex-wrap items-center gap-4 mt-8 text-[10px] md:text-xs font-bold uppercase tracking-widest text-gray-400">
               <div className="flex items-center">
@@ -228,7 +228,7 @@ export default function BreakdownRecovery() {
               <h3 className="text-2xl font-black mb-4 uppercase tracking-widest">Need Immediate Help?</h3>
               <p className="text-gray-400 mb-8">We are standing by to assist you with any breakdown emergency 24/7.</p>
               <a href="tel:07366302341" className="inline-flex items-center text-brand-orange font-black uppercase tracking-widest hover:translate-x-2 transition-transform">
-                GET IN TOUCH <ArrowRight className="ml-2 w-5 h-5" />
+                CALL NOW <ArrowRight className="ml-2 w-5 h-5" />
               </a>
               <div className="flex flex-wrap items-center gap-3 mt-6 text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-gray-500">
                 <div className="flex items-center">
