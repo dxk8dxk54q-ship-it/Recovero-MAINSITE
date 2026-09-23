@@ -17,7 +17,7 @@ import {
 const PORTSMOUTH_FAQS = [
   {
     question: 'How fast can you reach me in Portsmouth?',
-    answer: 'We aim to reach most Portsmouth locations within 30 minutes, depending on traffic on the M27 or A3. Our drivers are local to the area and know the quickest routes.',
+    answer: 'We aim to reach many Portsmouth locations in around 30 minutes, depending on traffic, your exact location and operator availability. We’ll confirm the ETA when you call.',
   },
   {
     question: 'Do you cover Southsea and the seafront?',
@@ -25,7 +25,7 @@ const PORTSMOUTH_FAQS = [
   },
   {
     question: 'Can you recover my vehicle from the Portsmouth International Port?',
-    answer: 'Yes, we can assist with vehicle recovery and transport to and from the Portsmouth ferry terminal and port areas for all types of vehicles.',
+    answer: 'Yes, we can arrange vehicle recovery and transport to and from the Portsmouth ferry terminal and port areas for supported cars, vans and motorcycles.',
   },
   {
     question: 'Are you available for breakdowns on the M27 near Portsmouth?',
@@ -33,7 +33,7 @@ const PORTSMOUTH_FAQS = [
   },
   {
     question: 'What types of vehicles do you recover in Portsmouth?',
-    answer: 'We recover cars, vans, and motorcycles. Whether it\'s a breakdown, accident, or a non-runner that needs transport, we have the equipment to help.',
+    answer: 'We arrange recovery for cars, vans and motorcycles in most cases. Whether it is a breakdown, accident or non-runner, we’ll match the job with a suitable operator.',
   }
 ];
 
@@ -110,13 +110,13 @@ export default function PortsmouthRecovery() {
               viewport={{ once: true }}
             >
               <h2 className="text-3xl md:text-5xl font-black mb-8 uppercase tracking-tight">
-                Portsmouth's Trusted <span className="text-brand-orange">Recovery Service</span>
+                Vehicle Recovery <span className="text-brand-orange">Across Portsmouth</span>
               </h2>
               <p className="text-lg text-brand-dark mb-6 leading-relaxed font-medium">
-                We cover all of Portsmouth, from Southsea to Cosham, including major routes like the M27 and A3(M). Whether you're stuck on the motorway or a local side street, we are never far away.
+                We arrange recovery across Portsmouth, from Southsea to Cosham, including major routes such as the M27 and A3(M). Call us with your exact location and we’ll check suitable local availability.
               </p>
               <p className="text-lg text-brand-dark mb-8 leading-relaxed font-medium">
-                We understand the local traffic patterns and the quickest ways to reach you, ensuring that your wait time is kept to an absolute minimum.
+                Once availability is confirmed, we’ll give you the ETA and recovery details so you know what to expect before the job is arranged.
               </p>
               <div className="bg-brand-dark p-8 rounded-sm text-white border-l-8 border-brand-orange shadow-xl">
               <h3 className="text-xl font-black mb-4 uppercase tracking-widest">Our Services Include:</h3>
