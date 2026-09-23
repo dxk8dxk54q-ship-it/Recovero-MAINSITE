@@ -1,23 +1,18 @@
-# Set correct MIME types for sitemap and robots
+# Correct MIME types for crawlable SEO files
 AddType application/xml .xml
 AddType text/plain .txt
 
-# Ensure XML files are recognized correctly
 <Files "sitemap.xml">
     ForceType application/xml
 </Files>
 
-# Ensure robots.txt is recognized correctly
 <Files "robots.txt">
     ForceType text/plain
 </Files>
 
-# Single Page Application routing (prevent 404s on direct URL access)
-<IfModule mod_rewrite.c>
-  RewriteEngine On
-  RewriteBase /
-  RewriteRule ^index\.html$ - [L]
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule . /index.html [L]
-</IfModule>
+# The production build pre-renders each public route into its own directory,
+# so Apache can serve /portsmouth-recovery/ -> /portsmouth-recovery/index.html.
+DirectoryIndex index.html
+
+# Unknown URLs should return a genuine 404 instead of the homepage with HTTP 200.
+ErrorDocument 404 /404.html
