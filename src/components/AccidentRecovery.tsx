@@ -18,7 +18,7 @@ export default function AccidentRecovery() {
     document.title = "Accident Recovery Portsmouth | 24/7 Emergency Help | Recovero247";
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
-      metaDescription.setAttribute('content', 'Fast accident recovery in Portsmouth. Recovero247 provides 24/7 emergency vehicle recovery for cars, vans and motorcycles. Call for an upfront quote.');
+      metaDescription.setAttribute('content', 'Fast accident recovery in Portsmouth. Recovero247 arranges 24/7 vehicle recovery for accident-damaged cars, vans and motorcycles. Call for a clear quote.');
     }
   }, []);
 
@@ -209,7 +209,7 @@ export default function AccidentRecovery() {
             <div className="bg-brand-dark p-8 md:p-12 rounded-sm text-white relative overflow-hidden">
               <Truck className="absolute -bottom-10 -right-10 w-64 h-64 text-white/5 transform -rotate-12" />
               <h3 className="text-2xl font-black mb-4 uppercase tracking-widest">Need Immediate Help?</h3>
-              <p className="text-gray-400 mb-8">We are standing by to assist you with any accident recovery emergency 24/7.</p>
+              <p className="text-gray-400 mb-8">Calls are answered 24/7. Call now and we’ll check local recovery availability for your accident-damaged vehicle.</p>
               <a href="tel:07366302341" className="inline-flex items-center text-brand-orange font-black uppercase tracking-widest hover:translate-x-2 transition-transform">
                 CALL NOW <ArrowRight className="ml-2 w-5 h-5" />
               </a>
