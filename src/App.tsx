@@ -21,6 +21,8 @@ import AndoverRecovery from './components/AndoverRecovery';
 import HaylingIslandRecovery from './components/HaylingIslandRecovery';
 import BecomePartner from './components/BecomePartner';
 import ScrollToTop from './components/ScrollToTop';
+import SeoManager from './components/SeoManager';
+import NotFound from './components/NotFound';
 
 function ScrollToHash() {
   const { hash, pathname } = useLocation();
@@ -46,6 +48,7 @@ export default function App() {
     <Router>
       <ScrollToTop />
       <ScrollToHash />
+      <SeoManager />
       <Layout>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -62,6 +65,7 @@ export default function App() {
           <Route path="/andover-recovery" element={<AndoverRecovery />} />
           <Route path="/hayling-island-recovery" element={<HaylingIslandRecovery />} />
           <Route path="/recovery-partners" element={<BecomePartner />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Layout>
     </Router>

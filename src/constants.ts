@@ -43,7 +43,7 @@ export const SERVICES = [
 export const FAQS = [
   {
     question: 'How quickly can you get to me?',
-    answer: 'We send a recovery driver immediately to ensure the fastest possible response time.',
+    answer: 'Call us with your location and vehicle details. We’ll check suitable local operator availability and confirm the expected response time before recovery is arranged.',
   },
   {
     question: 'Do you cover Havant and nearby areas?',

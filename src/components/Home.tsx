@@ -19,7 +19,7 @@ export default function Home() {
     document.title = "Recovero | 24/7 Fast Vehicle Recovery & Breakdown Assistance";
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
-      metaDescription.setAttribute('content', 'Stranded? Recovero provides rapid 24/7 vehicle recovery and breakdown assistance across Portsmouth, Havant, and Hampshire. Call for fast recovery and fixed quotes.');
+      metaDescription.setAttribute('content', 'Stranded? Recovero provides rapid 24/7 vehicle recovery and breakdown assistance across Portsmouth, Havant and Hampshire. Call for availability and a clear recovery quote.');
     }
   }, []);
 
@@ -54,7 +54,7 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start space-y-3 sm:space-y-0 sm:space-x-4 mb-8">
               <a href="tel:07366302341" className="w-full sm:w-auto bg-brand-orange hover:bg-brand-orange/90 text-black font-black py-4 md:py-5 px-8 md:px-10 text-base md:text-lg uppercase tracking-widest transition-all transform hover:scale-105 flex items-center justify-center group rounded-full shadow-2xl">
                 <Phone className="mr-2 w-5 h-5 fill-current" />
-                GET IN TOUCH
+                CALL NOW
               </a>
             </div>
             <div className="flex flex-wrap justify-center items-center md:justify-start gap-4 md:gap-8 mt-6 text-xs md:text-sm font-bold text-gray-200 uppercase tracking-widest">
@@ -64,11 +64,11 @@ export default function Home() {
               </div>
               <div className="flex items-center gap-1.5">
                 <CheckCircle2 className="w-4 h-4 text-green-500" />
-                <span>Fast Dispatch</span>
+                <span>Local Availability</span>
               </div>
               <div className="flex items-center gap-1.5">
                 <CheckCircle2 className="w-4 h-4 text-green-500" />
-                <span>Fixed Upfront Price</span>
+                <span>Clear Quote First</span>
               </div>
             </div>
           </motion.div>
@@ -106,10 +106,10 @@ export default function Home() {
               </h2>
               <div className="space-y-4 md:space-y-6 text-brand-dark text-sm sm:text-base md:text-lg leading-relaxed font-medium">
                 <p>
-                  Recovero provides professional vehicle recovery and transport across Hampshire, ensuring we reach you fast when you need it most.
+                  Recovero arranges vehicle recovery and transport across Hampshire, helping you find a suitable available operator when you need one.
                 </p>
                 <p>
-                  Whether you're in <Link to="/portsmouth-recovery" className="text-brand-orange font-bold hover:underline">Portsmouth</Link>, Havant, or Winchester, our recovery drivers are standing by to assist you immediately.
+                  Whether you're in <Link to="/portsmouth-recovery" className="text-brand-orange font-bold hover:underline">Portsmouth</Link>, Havant, or Winchester, we check availability with suitable local recovery operators and arrange the best available response.
                 </p>
               </div>
             </motion.div>
@@ -130,8 +130,8 @@ export default function Home() {
                 />
               </div>
               <div className="absolute -bottom-2 -left-2 md:-bottom-6 md:-left-6 bg-brand-orange p-2 md:p-8 shadow-xl">
-                <p className="text-black font-black text-lg md:text-4xl">10+</p>
-                <p className="text-black font-bold text-[6px] md:text-xs uppercase tracking-widest leading-none">Years Experience</p>
+                <p className="text-black font-black text-lg md:text-4xl">24/7</p>
+                <p className="text-black font-bold text-[6px] md:text-xs uppercase tracking-widest leading-none">Calls Answered</p>
               </div>
             </motion.div>
           </div>
@@ -146,7 +146,7 @@ export default function Home() {
               Our <span className="text-brand-orange">Recovery Services</span>
             </h2>
             <p className="text-brand-dark max-w-2xl mx-auto text-sm sm:text-base md:text-lg font-medium">
-              We send a recovery driver to your location for the fastest possible response.
+              We arrange suitable recovery based on your location, vehicle and job requirements.
             </p>
           </div>
 
@@ -198,16 +198,16 @@ export default function Home() {
             <div className="absolute -right-8 -top-8 w-32 h-32 bg-orange-500/10 rounded-full" />
             
             <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-gray-900 mb-6 text-center">
-              WE GET TO YOU <span className="text-orange-500">FAST!</span>
+              FAST LOCAL <span className="text-orange-500">RESPONSE</span>
             </h2>
             
             <p className="text-lg md:text-xl text-gray-700 leading-relaxed font-semibold text-center max-w-3xl mx-auto">
-              We operate a vetted local response system rather than relying on just one or two trucks. This means we instantly coordinate with the closest available driver to your exact location, slashing wait times and getting a recovery vehicle moving the moment you hang up the phone.
+              Recovero checks suitable local recovery operators based on your location, vehicle and job requirements. Once availability is confirmed, we arrange the recovery and give you the agreed quote before the job is booked.
             </p>
             
             <div className="mt-8 flex justify-center items-center gap-3">
               <div className="h-2 w-2 bg-orange-500 rounded-full animate-ping" />
-              <span className="text-sm font-black uppercase tracking-widest text-orange-600">Priority Response Active</span>
+              <span className="text-sm font-black uppercase tracking-widest text-orange-600">24/7 Call Handling</span>
             </div>
           </div>
         </div>
@@ -233,7 +233,7 @@ export default function Home() {
               </h2>
               <div className="w-24 h-2 bg-brand-orange mx-auto mb-8" />
               <p className="text-gray-400 max-w-2xl mx-auto font-medium text-lg md:text-xl leading-relaxed">
-                We provide 24/7 vehicle recovery and transport across these local areas and beyond. Our drivers are always nearby for a fast response.
+                We arrange 24/7 vehicle recovery and transport across these local areas and beyond. Call us to check availability for your location.
               </p>
             </motion.div>
           </div>

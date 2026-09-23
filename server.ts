@@ -1,10 +1,49 @@
 import express from "express";
 import path from "path";
+import fs from "fs";
 import { createServer as createViteServer } from "vite";
 import dotenv from "dotenv";
 import nodemailer from "nodemailer";
+import { buildStructuredData, canonicalUrl, getSeoForPath, isKnownRoute, normalizePath } from "./src/seo";
 
 dotenv.config();
+
+function escapeHtml(value: string) {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+function renderSeoHtml(template: string, pathname: string) {
+  const normalized = normalizePath(pathname);
+  const knownRoute = isKnownRoute(normalized);
+  const seo = getSeoForPath(normalized);
+  const canonical = canonicalUrl(knownRoute ? normalized : "/");
+  const robots = seo.robots || (knownRoute ? "index,follow" : "noindex,follow");
+  const structuredData = JSON.stringify(buildStructuredData(normalized)).replace(/</g, "\\u003c");
+
+  let html = template
+    .replace(/<title>.*?<\/title>/s, `<title>${escapeHtml(seo.title)}</title>`)
+    .replace(/<meta\s+name=["']description["'][^>]*>/i, `<meta name="description" content="${escapeHtml(seo.description)}" />`)
+    .replace(/<meta\s+name=["']robots["'][^>]*>/i, `<meta name="robots" content="${escapeHtml(robots)}" />`)
+    .replace(/<link\s+rel=["']canonical["'][^>]*>/i, `<link rel="canonical" href="${escapeHtml(canonical)}" />`)
+    .replace(/<meta\s+property=["']og:title["'][^>]*>/i, `<meta property="og:title" content="${escapeHtml(seo.title)}" />`)
+    .replace(/<meta\s+property=["']og:description["'][^>]*>/i, `<meta property="og:description" content="${escapeHtml(seo.description)}" />`)
+    .replace(/<meta\s+property=["']og:url["'][^>]*>/i, `<meta property="og:url" content="${escapeHtml(canonical)}" />`)
+    .replace(/<meta\s+name=["']twitter:title["'][^>]*>/i, `<meta name="twitter:title" content="${escapeHtml(seo.title)}" />`)
+    .replace(/<meta\s+name=["']twitter:description["'][^>]*>/i, `<meta name="twitter:description" content="${escapeHtml(seo.description)}" />`);
+
+  html = html.replace(
+    "</head>",
+    `<script id="recovero-structured-data" type="application/ld+json">${structuredData}</script>\n  </head>`
+  );
+
+  return html;
+}
+
 
 async function startServer() {
   const app = express();
@@ -201,9 +240,17 @@ ${extraNotes || "N/A"}
     app.use(vite.middlewares);
   } else {
     const distPath = path.join(process.cwd(), "dist");
-    app.use(express.static(distPath));
+    const indexPath = path.join(distPath, "index.html");
+    const indexTemplate = fs.readFileSync(indexPath, "utf-8");
+
+    app.use(express.static(distPath, { index: false }));
+
     app.get("*", (req, res) => {
-      res.sendFile(path.join(distPath, "index.html"));
+      const pathname = normalizePath(req.path);
+      const knownRoute = isKnownRoute(pathname);
+      const html = renderSeoHtml(indexTemplate, pathname);
+
+      res.status(knownRoute ? 200 : 404).type("html").send(html);
     });
   }
 

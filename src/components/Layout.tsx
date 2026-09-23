@@ -451,15 +451,15 @@ export default function Layout({ children }: LayoutProps) {
                 </span>
               </div>
               <p className="text-gray-600 mb-6 md:mb-8 leading-relaxed text-sm md:text-base">
-                Professional vehicle recovery and transport services across Hampshire. Available day and night for all your automotive needs.
+                Vehicle recovery and transport arranged across Hampshire. Calls are answered day and night to check local availability and provide a clear quote.
               </p>
               <div className="flex justify-center md:justify-start space-x-4">
-                <a href="#" className="w-10 h-10 bg-brand-orange flex items-center justify-center text-black hover:bg-brand-orange/90 transition-colors">
+                <span title="Facebook coming soon" aria-label="Facebook coming soon" className="w-10 h-10 bg-brand-orange flex items-center justify-center text-black opacity-80 cursor-default">
                   <Facebook className="w-5 h-5" />
-                </a>
-                <a href="#" className="w-10 h-10 bg-brand-orange flex items-center justify-center text-black hover:bg-brand-orange/90 transition-colors">
+                </span>
+                <span title="Instagram coming soon" aria-label="Instagram coming soon" className="w-10 h-10 bg-brand-orange flex items-center justify-center text-black opacity-80 cursor-default">
                   <Instagram className="w-5 h-5" />
-                </a>
+                </span>
               </div>
             </div>
 
@@ -486,7 +486,7 @@ export default function Layout({ children }: LayoutProps) {
                 <li><button onClick={() => setIsPrivacyOpen(true)} className="hover:text-brand-orange transition-colors">Privacy Policy</button></li>
                 <li><button onClick={() => setIsCookiesOpen(true)} className="hover:text-brand-orange transition-colors">Cookie Policy</button></li>
                 <li><Link to="/recovery-partners" className="hover:text-brand-orange transition-colors">Become a Partner</Link></li>
-                <li><a href="#" className="hover:text-brand-orange transition-colors">Emergency Contact</a></li>
+                <li><a href="tel:07366302341" className="hover:text-brand-orange transition-colors">Emergency Contact</a></li>
               </ul>
             </div>
 
@@ -498,7 +498,7 @@ export default function Layout({ children }: LayoutProps) {
                   <Phone className="w-5 h-5 text-brand-orange md:mr-4 mb-2 md:mb-0 md:mt-1" />
                   <div>
                     <p className="font-bold text-brand-dark text-sm md:text-base">07366302341</p>
-                    <p className="text-xs md:text-sm text-brand-dark font-medium">Call for Fast Help</p>
+                    <p className="text-xs md:text-sm text-brand-dark font-medium">Call to Check Availability</p>
                   </div>
                 </li>
                 <li className="flex flex-col md:flex-row items-center md:items-start">
