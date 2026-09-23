@@ -49,7 +49,7 @@ export default function PetersfieldRecovery() {
                 className="inline-flex items-center bg-brand-orange hover:bg-brand-orange/90 text-black font-black py-4 px-8 md:px-10 text-base md:text-lg uppercase tracking-widest transition-all transform hover:scale-105 rounded-full shadow-2xl"
               >
                 <Phone className="mr-3 w-5 h-5 fill-current" />
-                GET IN TOUCH
+                CALL NOW
               </a>
             </div>
           </motion.div>
@@ -156,7 +156,7 @@ export default function PetersfieldRecovery() {
           </h2>
           <div className="flex flex-col items-center">
             <a href="tel:07366302341" className="w-full sm:w-auto bg-black hover:bg-black/90 text-brand-orange font-black py-4 md:py-5 px-10 md:px-12 text-base md:text-lg uppercase tracking-widest transition-all transform hover:scale-110 rounded-full shadow-2xl inline-block">
-              GET IN TOUCH
+              CALL NOW
             </a>
             <div className="flex flex-wrap items-center justify-center gap-4 mt-8 text-[10px] md:text-xs font-bold uppercase tracking-widest text-black/60">
               <div className="flex items-center">
