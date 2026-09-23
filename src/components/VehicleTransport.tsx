@@ -18,7 +18,7 @@ export default function VehicleTransport() {
     document.title = "Vehicle Transport Portsmouth | Safe & Reliable Car Moves | Recovero247";
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
-      metaDescription.setAttribute('content', 'Professional vehicle transport in Portsmouth and across the UK. Recovero247 offers safe transport for classic, luxury and everyday cars. Call for a quote.');
+      metaDescription.setAttribute('content', 'Vehicle transport in Portsmouth and across the UK. Recovero247 arranges safe transport for classic, luxury and everyday cars. Call for a quote.');
     }
   }, []);
 
