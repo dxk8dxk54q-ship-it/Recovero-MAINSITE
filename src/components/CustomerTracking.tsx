@@ -1,13 +1,12 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { useParams, useSearchParams, Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { createClient } from '@supabase/supabase-js';
 import {
   Truck,
   Phone,
   Clock,
   MapPin,
-  CheckCircle2,
   AlertTriangle,
   RefreshCw,
   Copy,
@@ -15,9 +14,6 @@ import {
   ShieldCheck,
   Navigation,
   Car,
-  User,
-  ArrowRight,
-  ExternalLink,
   Radio,
   Calendar
 } from 'lucide-react';
@@ -36,78 +32,144 @@ const getSupabaseClient = () => {
   return supabaseClient;
 };
 
-interface JobDetails {
-  id?: string;
-  job_number?: string;
-  job_ref?: string;
-  reference?: string;
-  status?: string;
-  service_type?: string;
-  customer_name?: string;
-  customer_phone?: string;
-  vehicle_reg?: string;
+export interface CustomerTrackingData {
+  success: boolean;
+  isValid: boolean;
+  isRevoked: boolean;
+  isFailed: boolean;
+  isCompleted: boolean;
+  jobId?: string;
+  vehicleName?: string;
   registration?: string;
-  vehicle_make?: string;
-  vehicle_model?: string;
-  vehicle_color?: string;
-  vehicle?: string;
-  pickup_address?: string;
-  pickup_postcode?: string;
-  pickup_location?: string;
-  dropoff_address?: string;
-  dropoff_postcode?: string;
-  dropoff_location?: string;
-  delivery_address?: string;
-  driver_name?: string;
-  driver_phone?: string;
-  driver_vehicle?: string;
-  driver_rating?: number | string;
-  eta?: string | number;
-  eta_minutes?: number;
-  eta_text?: string;
-  estimated_arrival?: string;
-  driver_lat?: number;
-  driver_lng?: number;
-  pickup_lat?: number;
-  pickup_lng?: number;
-  notes?: string;
-  special_instructions?: string;
-  created_at?: string;
-  updated_at?: string;
+  pickupArea?: string;
+  dropoffArea?: string;
+  status?: string;
+  collectorProgress?: string;
+  collectorProgressUpdatedAt?: string | null;
+  operatorDisplayName?: string;
+  dispatchedAt?: string | null;
+  supportPhone?: string;
 }
 
-const STATUS_STEPS = [
-  { key: 'assigned', label: 'Driver Assigned', desc: 'Job allocated to recovery unit' },
-  { key: 'en_route', label: 'En Route', desc: 'Driver travelling to pickup location' },
+const PROGRESS_STEPS = [
+  { key: 'assigned', label: 'Job Confirmed', desc: 'Driver allocated to job' },
+  { key: 'en_route', label: 'Collector En Route', desc: 'Driver heading to pickup area' },
   { key: 'on_scene', label: 'On Scene', desc: 'Driver arrived & assessing vehicle' },
-  { key: 'in_transit', label: 'In Transit', desc: 'Vehicle loaded & en route to destination' },
+  { key: 'vehicle_loaded', label: 'Vehicle Loaded', desc: 'Vehicle loaded & in transit' },
   { key: 'completed', label: 'Completed', desc: 'Vehicle safely delivered' }
 ];
 
-function normalizeStatus(status?: string): { stepIndex: number; label: string; color: string; badge: string; isComplete: boolean; isCancelled: boolean } {
-  if (!status) {
-    return { stepIndex: 0, label: 'Driver Assigned', color: 'text-amber-400', badge: 'bg-amber-500/20 text-amber-300 border-amber-500/30', isComplete: false, isCancelled: false };
+function getProgressInfo(data?: CustomerTrackingData | null) {
+  if (!data) {
+    return {
+      stepIndex: 0,
+      label: 'Job Confirmed',
+      badge: 'bg-amber-500/20 text-amber-300 border-amber-500/30',
+      isFailed: false,
+      isRevoked: false,
+      isComplete: false,
+    };
   }
 
-  const s = status.toLowerCase().replace(/[\s-_]+/g, '_');
-
-  if (s.includes('cancel')) {
-    return { stepIndex: -1, label: 'Cancelled', color: 'text-red-400', badge: 'bg-red-500/20 text-red-300 border-red-500/30', isComplete: false, isCancelled: true };
-  }
-  if (s.includes('complet') || s.includes('deliver') || s.includes('finished')) {
-    return { stepIndex: 4, label: 'Job Completed', color: 'text-emerald-400', badge: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30', isComplete: true, isCancelled: false };
-  }
-  if (s.includes('transit') || s.includes('loaded') || s.includes('towing') || s.includes('moving')) {
-    return { stepIndex: 3, label: 'Vehicle In Transit', color: 'text-brand-orange', badge: 'bg-orange-500/20 text-orange-300 border-orange-500/30', isComplete: false, isCancelled: false };
-  }
-  if (s.includes('scene') || s.includes('arrived') || s.includes('on_site') || s.includes('loading')) {
-    return { stepIndex: 2, label: 'Driver On Scene', color: 'text-yellow-400', badge: 'bg-yellow-500/20 text-yellow-300 border-yellow-500/30', isComplete: false, isCancelled: false };
-  }
-  if (s.includes('route') || s.includes('way') || s.includes('travelling') || s.includes('dispatched')) {
-    return { stepIndex: 1, label: 'Driver En Route', color: 'text-brand-orange', badge: 'bg-orange-500/20 text-orange-300 border-orange-500/30', isComplete: false, isCancelled: false };
+  if (data.isRevoked) {
+    return {
+      stepIndex: -1,
+      label: 'Tracking Link Inactive',
+      badge: 'bg-red-500/20 text-red-300 border-red-500/30',
+      isFailed: false,
+      isRevoked: true,
+      isComplete: false,
+    };
   }
 
-  return { stepIndex: 0, label: 'Driver Assigned', color: 'text-amber-400', badge: 'bg-amber-500/20 text-amber-300 border-amber-500/30', isComplete: false, isCancelled: false };
+  if (data.isFailed) {
+    return {
+      stepIndex: -1,
+      label: 'Recovery Update Required',
+      badge: 'bg-red-500/20 text-red-300 border-red-500/30',
+      isFailed: true,
+      isRevoked: false,
+      isComplete: false,
+    };
+  }
+
+  if (data.isCompleted) {
+    return {
+      stepIndex: 4,
+      label: 'Job Completed',
+      badge: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30',
+      isFailed: false,
+      isRevoked: false,
+      isComplete: true,
+    };
+  }
+
+  const cp = (data.collectorProgress || '').toLowerCase().trim();
+
+  if (cp === 'completed' || cp === 'delivered') {
+    return {
+      stepIndex: 4,
+      label: 'Job Completed',
+      badge: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30',
+      isFailed: false,
+      isRevoked: false,
+      isComplete: true,
+    };
+  }
+
+  if (cp === 'failed') {
+    return {
+      stepIndex: -1,
+      label: 'Recovery Update Required',
+      badge: 'bg-red-500/20 text-red-300 border-red-500/30',
+      isFailed: true,
+      isRevoked: false,
+      isComplete: false,
+    };
+  }
+
+  if (cp === 'vehicle_loaded' || cp === 'en_route_delivery' || cp === 'in_transit') {
+    return {
+      stepIndex: 3,
+      label: 'Vehicle Loaded',
+      badge: 'bg-orange-500/20 text-orange-300 border-orange-500/30',
+      isFailed: false,
+      isRevoked: false,
+      isComplete: false,
+    };
+  }
+
+  if (cp === 'on_scene' || cp === 'at_pickup' || cp === 'on_scene_pickup' || cp === 'arrived') {
+    return {
+      stepIndex: 2,
+      label: 'On Scene',
+      badge: 'bg-yellow-500/20 text-yellow-300 border-yellow-500/30',
+      isFailed: false,
+      isRevoked: false,
+      isComplete: false,
+    };
+  }
+
+  if (cp === 'en_route' || cp === 'en_route_pickup') {
+    return {
+      stepIndex: 1,
+      label: 'Collector En Route',
+      badge: 'bg-orange-500/20 text-orange-300 border-orange-500/30',
+      isFailed: false,
+      isRevoked: false,
+      isComplete: false,
+    };
+  }
+
+  // assigned / initial state
+  return {
+    stepIndex: 0,
+    label: 'Job Confirmed',
+    badge: 'bg-amber-500/20 text-amber-300 border-amber-500/30',
+    isFailed: false,
+    isRevoked: false,
+    isComplete: false,
+  };
 }
 
 export default function CustomerTracking() {
@@ -116,7 +178,7 @@ export default function CustomerTracking() {
   const rawToken = routeToken || searchParams.get('token') || '';
   const [inputToken, setInputToken] = useState(rawToken);
 
-  const [job, setJob] = useState<JobDetails | null>(null);
+  const [trackingData, setTrackingData] = useState<CustomerTrackingData | null>(null);
   const [loading, setLoading] = useState<boolean>(Boolean(rawToken));
   const [refreshing, setRefreshing] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
@@ -148,24 +210,37 @@ export default function CustomerTracking() {
 
       if (invokeError) {
         console.error('Customer tracking invoke error:', invokeError);
-        throw new Error(invokeError.message || 'Unable to retrieve tracking details');
+        throw new Error('NETWORK_ERROR');
       }
 
       if (!data) {
-        throw new Error('No tracking data received');
+        throw new Error('NETWORK_ERROR');
       }
 
-      if (data.error) {
-        throw new Error(data.error || 'Tracking reference not found or has expired');
+      // Check if function flagged invalid token
+      if (data.isValid === false) {
+        setError('Tracking link not found or expired.');
+        setTrackingData(null);
+        return;
       }
 
-      const jobData = data.job || data.data || data;
-      setJob(jobData);
+      // Check if function flagged revoked link
+      if (data.isRevoked) {
+        setError('This tracking link is no longer active.');
+        setTrackingData(data);
+        return;
+      }
+
+      setTrackingData(data);
       setLastUpdated(new Date());
     } catch (err: any) {
       console.error('Failed to load tracking data:', err);
-      setError(err?.message || 'Invalid or expired tracking link. Please check your reference or contact dispatch.');
-      setJob(null);
+      if (err?.message === 'NETWORK_ERROR' || !err?.message) {
+        setError('Unable to connect to Recovero tracking. Please try again.');
+      } else {
+        setError(err.message);
+      }
+      setTrackingData(null);
     } finally {
       setLoading(false);
       setRefreshing(false);
@@ -178,19 +253,26 @@ export default function CustomerTracking() {
     }
   }, [rawToken, fetchTrackingData]);
 
-  // Auto poll every 25 seconds if active
+  // Fast polling every 7 seconds while active
   useEffect(() => {
-    if (!rawToken || !job) return;
+    if (!rawToken || !trackingData) return;
 
-    const statusInfo = normalizeStatus(job.status);
-    if (statusInfo.isComplete || statusInfo.isCancelled) return;
+    // Stop polling if completed, failed, revoked, or invalid
+    if (
+      trackingData.isCompleted ||
+      trackingData.isFailed ||
+      trackingData.isRevoked ||
+      trackingData.isValid === false
+    ) {
+      return;
+    }
 
     const interval = setInterval(() => {
       fetchTrackingData(rawToken, true);
-    }, 25000);
+    }, 7000);
 
     return () => clearInterval(interval);
-  }, [rawToken, job, fetchTrackingData]);
+  }, [rawToken, trackingData, fetchTrackingData]);
 
   const handleCopyLink = () => {
     if (typeof window !== 'undefined') {
@@ -207,15 +289,14 @@ export default function CustomerTracking() {
     }
   };
 
-  const statusInfo = normalizeStatus(job?.status);
-
-  // Format vehicle display
-  const vehicleName = [job?.vehicle_make, job?.vehicle_model].filter(Boolean).join(' ') || job?.vehicle || 'Vehicle';
-  const registration = job?.vehicle_reg || job?.registration || '';
-  const pickupAddr = job?.pickup_address || job?.pickup_location || 'Pickup Location';
-  const dropoffAddr = job?.dropoff_address || job?.dropoff_location || job?.delivery_address;
-  const etaDisplay = job?.eta_text || (job?.eta_minutes ? `~${job.eta_minutes} mins` : (job?.eta ? `${job.eta}` : 'Calculating...'));
-  const jobRef = job?.job_ref || job?.job_number || job?.reference || rawToken.slice(0, 8).toUpperCase();
+  const progressInfo = getProgressInfo(trackingData);
+  const supportPhone = trackingData?.supportPhone || '07366302341';
+  const vehicleName = trackingData?.vehicleName || 'Vehicle';
+  const registration = trackingData?.registration || '';
+  const pickupArea = trackingData?.pickupArea || 'Pickup Location';
+  const dropoffArea = trackingData?.dropoffArea || 'Destination';
+  const operatorName = trackingData?.operatorDisplayName || 'Recovero Recovery Partner';
+  const jobRef = trackingData?.jobId || rawToken.slice(0, 8).toUpperCase();
 
   return (
     <div className="min-h-screen bg-[#0E0E0E] text-white pt-24 pb-20 px-4 sm:px-6 lg:px-8 font-brand">
@@ -246,7 +327,7 @@ export default function CustomerTracking() {
                 title="Refresh Tracking Status"
               >
                 <RefreshCw className={`w-3.5 h-3.5 ${refreshing ? 'animate-spin text-brand-orange' : ''}`} />
-                <span>{refreshing ? 'Updating...' : 'Refresh'}</span>
+                <span>{refreshing ? 'Updating...' : 'Live'}</span>
               </button>
             )}
 
@@ -259,7 +340,7 @@ export default function CustomerTracking() {
             </button>
 
             <a
-              href="tel:07366302341"
+              href={`tel:${supportPhone}`}
               className="inline-flex items-center gap-2 px-4 py-2 bg-brand-orange hover:bg-brand-orange/90 text-black rounded font-black text-xs uppercase tracking-wider transition-all transform hover:scale-105"
             >
               <Phone className="w-3.5 h-3.5 fill-current" />
@@ -269,7 +350,7 @@ export default function CustomerTracking() {
         </div>
 
         {/* Missing Token or Manual Entry Mode */}
-        {!rawToken && !job && !loading && (
+        {!rawToken && !trackingData && !loading && (
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
@@ -280,7 +361,7 @@ export default function CustomerTracking() {
             </div>
             <h2 className="text-xl font-bold uppercase tracking-wide mb-2 text-white">Track Your Recovery</h2>
             <p className="text-gray-400 text-sm mb-6 leading-relaxed">
-              Enter your tracking token or reference code provided in your SMS or email confirmation to see live driver updates.
+              Enter your tracking token or reference code provided in your SMS confirmation to view live driver updates.
             </p>
 
             <form onSubmit={handleManualSearch} className="space-y-4">
@@ -289,7 +370,7 @@ export default function CustomerTracking() {
                   type="text"
                   value={inputToken}
                   onChange={(e) => setInputToken(e.target.value)}
-                  placeholder="e.g. REC-84920 or token code"
+                  placeholder="e.g. tracking token code"
                   className="w-full bg-[#101010] border border-white/15 focus:border-brand-orange focus:ring-1 focus:ring-brand-orange rounded-lg px-4 py-3 text-white placeholder-gray-500 font-mono text-center uppercase tracking-widest text-sm outline-none"
                   required
                 />
@@ -304,8 +385,8 @@ export default function CustomerTracking() {
 
             <div className="mt-8 pt-6 border-t border-white/10 text-xs text-gray-500">
               Need immediate assistance? Call our control room on{' '}
-              <a href="tel:07366302341" className="text-brand-orange font-bold hover:underline">
-                07366 302341
+              <a href={`tel:${supportPhone}`} className="text-brand-orange font-bold hover:underline">
+                {supportPhone}
               </a>
             </div>
           </motion.div>
@@ -323,7 +404,7 @@ export default function CustomerTracking() {
               Connecting to Dispatch...
             </h3>
             <p className="text-gray-400 text-xs tracking-wide">
-              Retrieving live vehicle coordinates & driver status
+              Retrieving live vehicle recovery progress
             </p>
           </div>
         )}
@@ -356,10 +437,10 @@ export default function CustomerTracking() {
                     </button>
                   )}
                   <a
-                    href="tel:07366302341"
+                    href={`tel:${supportPhone}`}
                     className="px-4 py-2 bg-brand-orange hover:bg-brand-orange/90 text-black rounded text-xs font-black uppercase tracking-wider transition-colors"
                   >
-                    Call Dispatch (07366 302341)
+                    Call Dispatch ({supportPhone})
                   </a>
                   <Link
                     to="/"
@@ -374,9 +455,9 @@ export default function CustomerTracking() {
         )}
 
         {/* Active Job Tracking View */}
-        {job && !loading && (
+        {trackingData && !loading && (
           <div className="space-y-6">
-            {/* Top Status & ETA Hero Banner */}
+            {/* Top Status & Progress Hero Banner */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -387,9 +468,9 @@ export default function CustomerTracking() {
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 relative z-10">
                 <div>
                   <div className="flex flex-wrap items-center gap-3 mb-2">
-                    <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-black uppercase tracking-widest border ${statusInfo.badge}`}>
+                    <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-black uppercase tracking-widest border ${progressInfo.badge}`}>
                       <Radio className="w-3 h-3 mr-1.5 animate-pulse" />
-                      {statusInfo.label}
+                      {progressInfo.label}
                     </span>
                     {jobRef && (
                       <span className="text-xs font-mono text-gray-400 bg-black/40 px-2.5 py-1 rounded border border-white/10">
@@ -398,38 +479,43 @@ export default function CustomerTracking() {
                     )}
                   </div>
                   <h2 className="text-2xl md:text-4xl font-black uppercase tracking-tight text-white">
-                    {statusInfo.isComplete ? 'Vehicle Safely Delivered' : (statusInfo.isCancelled ? 'Job Cancelled' : 'Recovery In Progress')}
+                    {progressInfo.isComplete
+                      ? 'Vehicle Safely Delivered'
+                      : progressInfo.isFailed
+                      ? 'Recovery Update Required'
+                      : progressInfo.isRevoked
+                      ? 'Link Inactive'
+                      : 'Recovery In Progress'}
                   </h2>
                   <p className="text-gray-400 text-sm mt-1">
-                    {job.service_type || '24/7 Breakdown & Vehicle Recovery Service'}
+                    24/7 Breakdown & Vehicle Movement Dispatch
                   </p>
                 </div>
 
-                {/* ETA Box */}
-                {!statusInfo.isComplete && !statusInfo.isCancelled && (
+                {/* Status Callout Card */}
+                {!progressInfo.isComplete && !progressInfo.isFailed && !progressInfo.isRevoked && (
                   <div className="bg-black/60 border border-brand-orange/30 rounded-xl p-4 md:p-5 text-center shrink-0 min-w-[180px]">
                     <div className="flex items-center justify-center gap-1.5 text-brand-orange text-xs font-bold uppercase tracking-wider mb-1">
                       <Clock className="w-3.5 h-3.5" />
-                      <span>Estimated Arrival</span>
+                      <span>Current Status</span>
                     </div>
-                    <div className="text-2xl md:text-3xl font-black text-white tracking-tight">
-                      {etaDisplay}
+                    <div className="text-xl md:text-2xl font-black text-white tracking-tight">
+                      {progressInfo.label}
                     </div>
                     <div className="text-[10px] text-gray-400 mt-1 uppercase tracking-wider">
-                      Live dispatch estimate
+                      Live dispatch update
                     </div>
                   </div>
                 )}
               </div>
 
-              {/* Progress Stepper */}
-              {!statusInfo.isCancelled && (
+              {/* Progress Stepper based strictly on collectorProgress */}
+              {!progressInfo.isFailed && !progressInfo.isRevoked && (
                 <div className="mt-8 pt-8 border-t border-white/10">
                   <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-                    {STATUS_STEPS.map((step, idx) => {
-                      const isPast = statusInfo.stepIndex > idx;
-                      const isCurrent = statusInfo.stepIndex === idx;
-                      const isUpcoming = statusInfo.stepIndex < idx;
+                    {PROGRESS_STEPS.map((step, idx) => {
+                      const isPast = progressInfo.stepIndex > idx;
+                      const isCurrent = progressInfo.stepIndex === idx;
 
                       return (
                         <div key={step.key} className="relative flex md:flex-col items-start gap-3 md:gap-2">
@@ -445,7 +531,7 @@ export default function CustomerTracking() {
                             >
                               {isPast ? <Check className="w-4 h-4 stroke-[3]" /> : idx + 1}
                             </div>
-                            {idx < STATUS_STEPS.length - 1 && (
+                            {idx < PROGRESS_STEPS.length - 1 && (
                               <div
                                 className={`hidden md:block h-1 flex-1 ml-2 rounded ${
                                   isPast ? 'bg-emerald-500' : 'bg-white/10'
@@ -473,63 +559,9 @@ export default function CustomerTracking() {
               )}
             </motion.div>
 
-            {/* Grid Layout: Vehicle & Driver + Route Info */}
+            {/* Grid Layout: Vehicle & Operator Details */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Driver & Assignment Card */}
-              <div className="bg-[#181818] border border-white/10 rounded-xl p-6 space-y-6">
-                <div className="flex items-center justify-between pb-4 border-b border-white/10">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-brand-orange/10 border border-brand-orange/30 flex items-center justify-center text-brand-orange">
-                      <Truck className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <h3 className="text-sm font-bold uppercase tracking-wider text-white">Assigned Recovery Unit</h3>
-                      <p className="text-xs text-gray-400">Professional Recovero Partner</p>
-                    </div>
-                  </div>
-                  <ShieldCheck className="w-5 h-5 text-emerald-400" />
-                </div>
-
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs uppercase font-bold text-gray-400">Driver</span>
-                    <span className="text-sm font-bold text-white">
-                      {job.driver_name || 'Allocated Driver en route'}
-                    </span>
-                  </div>
-
-                  {job.driver_vehicle && (
-                    <div className="flex items-center justify-between">
-                      <span className="text-xs uppercase font-bold text-gray-400">Vehicle Type</span>
-                      <span className="text-sm font-bold text-white">{job.driver_vehicle}</span>
-                    </div>
-                  )}
-
-                  {job.driver_phone ? (
-                    <div className="pt-2">
-                      <a
-                        href={`tel:${job.driver_phone}`}
-                        className="w-full flex items-center justify-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-black font-black uppercase tracking-wider text-xs py-3 rounded-lg transition-colors"
-                      >
-                        <Phone className="w-4 h-4 fill-current" />
-                        <span>Call Driver ({job.driver_phone})</span>
-                      </a>
-                    </div>
-                  ) : (
-                    <div className="pt-2">
-                      <a
-                        href="tel:07366302341"
-                        className="w-full flex items-center justify-center gap-2 bg-white/10 hover:bg-white/15 text-white font-bold uppercase tracking-wider text-xs py-3 rounded-lg transition-colors"
-                      >
-                        <Phone className="w-4 h-4" />
-                        <span>Contact Control Room (07366 302341)</span>
-                      </a>
-                    </div>
-                  )}
-                </div>
-              </div>
-
-              {/* Vehicle & Customer Card */}
+              {/* Vehicle Card */}
               <div className="bg-[#181818] border border-white/10 rounded-xl p-6 space-y-6">
                 <div className="flex items-center justify-between pb-4 border-b border-white/10">
                   <div className="flex items-center gap-3">
@@ -538,11 +570,11 @@ export default function CustomerTracking() {
                     </div>
                     <div>
                       <h3 className="text-sm font-bold uppercase tracking-wider text-white">Vehicle Details</h3>
-                      <p className="text-xs text-gray-400">Vehicle scheduled for recovery</p>
+                      <p className="text-xs text-gray-400">Scheduled for recovery</p>
                     </div>
                   </div>
 
-                  {/* UK Registration Badge */}
+                  {/* UK Registration Plate */}
                   {registration && (
                     <div className="bg-amber-300 text-black px-3 py-1 rounded font-mono font-black text-sm tracking-wider border-2 border-black flex items-center gap-1.5 shadow-sm">
                       <span className="bg-blue-700 text-white text-[8px] font-bold px-1 py-0.5 rounded-sm">GB</span>
@@ -553,23 +585,49 @@ export default function CustomerTracking() {
 
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <span className="text-xs uppercase font-bold text-gray-400">Make & Model</span>
+                    <span className="text-xs uppercase font-bold text-gray-400">Vehicle</span>
                     <span className="text-sm font-bold text-white">{vehicleName}</span>
                   </div>
 
-                  {job.vehicle_color && (
+                  {registration && (
                     <div className="flex items-center justify-between">
-                      <span className="text-xs uppercase font-bold text-gray-400">Color</span>
-                      <span className="text-sm font-bold text-white">{job.vehicle_color}</span>
+                      <span className="text-xs uppercase font-bold text-gray-400">Registration</span>
+                      <span className="text-sm font-mono font-bold text-brand-orange">{registration.toUpperCase()}</span>
                     </div>
                   )}
+                </div>
+              </div>
 
-                  {job.customer_name && (
-                    <div className="flex items-center justify-between">
-                      <span className="text-xs uppercase font-bold text-gray-400">Customer</span>
-                      <span className="text-sm font-bold text-white">{job.customer_name}</span>
+              {/* Operator / Unit Card */}
+              <div className="bg-[#181818] border border-white/10 rounded-xl p-6 space-y-6">
+                <div className="flex items-center justify-between pb-4 border-b border-white/10">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-brand-orange/10 border border-brand-orange/30 flex items-center justify-center text-brand-orange">
+                      <Truck className="w-5 h-5" />
                     </div>
-                  )}
+                    <div>
+                      <h3 className="text-sm font-bold uppercase tracking-wider text-white">Recovery Unit</h3>
+                      <p className="text-xs text-gray-400">Allocated Partner</p>
+                    </div>
+                  </div>
+                  <ShieldCheck className="w-5 h-5 text-emerald-400" />
+                </div>
+
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs uppercase font-bold text-gray-400">Assigned Operator</span>
+                    <span className="text-sm font-bold text-white">{operatorName}</span>
+                  </div>
+
+                  <div className="pt-2">
+                    <a
+                      href={`tel:${supportPhone}`}
+                      className="w-full flex items-center justify-center gap-2 bg-brand-orange hover:bg-brand-orange/90 text-black font-black uppercase tracking-wider text-xs py-3 rounded-lg transition-colors shadow-md"
+                    >
+                      <Phone className="w-4 h-4 fill-current" />
+                      <span>Call Dispatch ({supportPhone})</span>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -582,68 +640,49 @@ export default function CustomerTracking() {
               </h3>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {/* Pickup */}
+                {/* Pickup Area */}
                 <div className="bg-black/40 border border-white/10 rounded-lg p-4 relative">
                   <div className="flex items-center gap-2 text-emerald-400 text-xs font-bold uppercase tracking-wider mb-2">
                     <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
                     <span>Pickup Location</span>
                   </div>
-                  <div className="text-sm font-bold text-white">{pickupAddr}</div>
-                  {job.pickup_postcode && (
-                    <div className="text-xs text-brand-orange font-mono font-bold mt-1">
-                      {job.pickup_postcode.toUpperCase()}
-                    </div>
-                  )}
+                  <div className="text-sm font-bold text-white">{pickupArea}</div>
                 </div>
 
-                {/* Dropoff */}
+                {/* Dropoff Area */}
                 <div className="bg-black/40 border border-white/10 rounded-lg p-4 relative">
                   <div className="flex items-center gap-2 text-brand-orange text-xs font-bold uppercase tracking-wider mb-2">
                     <span className="w-2 h-2 rounded-full bg-brand-orange"></span>
                     <span>Destination / Dropoff</span>
                   </div>
-                  <div className="text-sm font-bold text-white">
-                    {dropoffAddr || 'Confirmed with driver on arrival'}
-                  </div>
-                  {job.dropoff_postcode && (
-                    <div className="text-xs text-brand-orange font-mono font-bold mt-1">
-                      {job.dropoff_postcode.toUpperCase()}
-                    </div>
-                  )}
+                  <div className="text-sm font-bold text-white">{dropoffArea}</div>
                 </div>
               </div>
-
-              {job.notes && (
-                <div className="mt-4 p-3 bg-white/5 rounded border border-white/10 text-xs text-gray-400">
-                  <span className="font-bold text-gray-300 uppercase tracking-wider mr-2">Special Instructions:</span>
-                  {job.notes}
-                </div>
-              )}
             </div>
 
             {/* Need Help Banner */}
             <div className="bg-gradient-to-r from-brand-orange/20 via-brand-orange/10 to-transparent border border-brand-orange/30 rounded-xl p-6 flex flex-col md:flex-row items-center justify-between gap-4">
               <div>
                 <h4 className="text-base font-black uppercase tracking-wide text-white">
-                  Need to speak with dispatch or change instructions?
+                  Need to speak with dispatch or provide further details?
                 </h4>
                 <p className="text-xs text-gray-300 mt-1">
                   Our Hampshire recovery team is available 24 hours a day, 7 days a week.
                 </p>
               </div>
               <a
-                href="tel:07366302341"
+                href={`tel:${supportPhone}`}
                 className="inline-flex items-center gap-2 bg-brand-orange hover:bg-brand-orange/90 text-black font-black uppercase tracking-wider text-xs px-6 py-3 rounded-lg shadow-lg transition-all transform hover:scale-105 shrink-0"
               >
                 <Phone className="w-4 h-4 fill-current" />
-                <span>Call 07366 302341</span>
+                <span>Call {supportPhone}</span>
               </a>
             </div>
 
             {/* Last updated timestamp */}
             {lastUpdated && (
               <div className="text-center text-[11px] text-gray-500 uppercase tracking-widest">
-                Last updated at {lastUpdated.toLocaleTimeString()} • Auto-refreshing live
+                Last updated at {lastUpdated.toLocaleTimeString()} • Live updates every few seconds
               </div>
             )}
           </div>
