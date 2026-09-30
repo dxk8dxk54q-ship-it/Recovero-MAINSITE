@@ -93,6 +93,12 @@ export const SEO_CONFIG: Record<string, SeoConfig> = {
     path: '/recovery-partners',
     robots: 'index,follow',
   },
+  '/track': {
+    title: 'Live Recovery Tracking | Recovero247',
+    description: 'Track your vehicle recovery unit in real-time with Recovero247 live dispatch updates.',
+    path: '/track',
+    robots: 'noindex,follow',
+  },
 };
 
 export const NOT_FOUND_SEO: SeoConfig = {
@@ -108,11 +114,17 @@ export function normalizePath(pathname: string) {
 }
 
 export function getSeoForPath(pathname: string): SeoConfig {
-  return SEO_CONFIG[normalizePath(pathname)] || NOT_FOUND_SEO;
+  const norm = normalizePath(pathname);
+  if (norm.startsWith('/track')) {
+    return SEO_CONFIG['/track'];
+  }
+  return SEO_CONFIG[norm] || NOT_FOUND_SEO;
 }
 
 export function isKnownRoute(pathname: string) {
-  return Boolean(SEO_CONFIG[normalizePath(pathname)]);
+  const norm = normalizePath(pathname);
+  if (norm.startsWith('/track')) return true;
+  return Boolean(SEO_CONFIG[norm]);
 }
 
 export function canonicalUrl(pathname: string) {

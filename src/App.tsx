@@ -20,6 +20,7 @@ import WinchesterRecovery from './components/WinchesterRecovery';
 import AndoverRecovery from './components/AndoverRecovery';
 import HaylingIslandRecovery from './components/HaylingIslandRecovery';
 import BecomePartner from './components/BecomePartner';
+import CustomerTracking from './components/CustomerTracking';
 import ScrollToTop from './components/ScrollToTop';
 import SeoManager from './components/SeoManager';
 import NotFound from './components/NotFound';
@@ -65,6 +66,8 @@ export default function App() {
           <Route path="/andover-recovery" element={<AndoverRecovery />} />
           <Route path="/hayling-island-recovery" element={<HaylingIslandRecovery />} />
           <Route path="/recovery-partners" element={<BecomePartner />} />
+          <Route path="/track/:token" element={<CustomerTracking />} />
+          <Route path="/track" element={<CustomerTracking />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Layout>
