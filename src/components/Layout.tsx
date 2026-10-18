@@ -483,7 +483,7 @@ export default function Layout({ children }: LayoutProps) {
               <h4 className="text-sm md:text-lg font-black uppercase tracking-widest mb-4 md:mb-8 text-brand-orange">Useful Links</h4>
               <ul className="space-y-2 md:space-y-4 text-brand-dark text-sm md:text-base font-medium">
                 <li><button onClick={() => setIsTermsOpen(true)} className="hover:text-brand-orange transition-colors">Terms & Conditions</button></li>
-                <li><button onClick={() => setIsPrivacyOpen(true)} className="hover:text-brand-orange transition-colors">Privacy Policy</button></li>
+                <li><Link to="/privacy-policy.html" className="hover:text-brand-orange transition-colors">Privacy Policy</Link></li>
                 <li><button onClick={() => setIsCookiesOpen(true)} className="hover:text-brand-orange transition-colors">Cookie Policy</button></li>
                 <li><Link to="/recovery-partners" className="hover:text-brand-orange transition-colors">Become a Partner</Link></li>
                 <li><a href="tel:07366302341" className="hover:text-brand-orange transition-colors">Emergency Contact</a></li>
